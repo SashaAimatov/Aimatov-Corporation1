@@ -2,1127 +2,1684 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aimatov Corporation — Инновационные решения</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Aimatov Corporation</title>
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     :root {
-        --blue-dark: #0D47A1;
-        --blue-deep: #1A237E;
-        --blue-mid: #1565C0;
-        --blue-light: #E3F2FD;
-        --blue-soft: #BBDEFB;
-        --white: #ffffff;
-        --gray: #f5f7fa;
-        --text: #1c1c1c;
-        --text-muted: #5a6a7a;
+        --navy: #123A5E;
+        --navy-2: #1B4B77;
+        --blue: #2A6DB0;
+        --blue-soft: #EAF2FA;
+        --green: #2F6B45;
+        --green-soft: #EAF4EE;
+        --line: #E2E8F0;
+        --line-2: #EEF2F7;
+        --bg: #F6F8FB;
+        --card: #FFFFFF;
+        --text: #172033;
+        --text-2: #48566B;
+        --text-3: #7A8799;
+        --radius: 14px;
+        --radius-sm: 10px;
     }
 
-    html { scroll-behavior: smooth; }
+    html, body {
+        height: 100%;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
 
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        font-size: 15px;
         color: var(--text);
-        background: var(--white);
-        line-height: 1.6;
+        background: var(--bg);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3 { font-weight: 700; line-height: 1.25; }
+    h1, h2, h3, h4 { font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
 
-    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
-
-    section { padding: 80px 0; }
-
-    .section-title {
-        color: var(--blue-deep);
-        font-size: 2.1rem;
-        margin-bottom: 12px;
+    /* ===== SHELL ===== */
+    .app {
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        max-width: 640px;
+        margin: 0 auto;
+        background: var(--card);
         position: relative;
-        display: inline-block;
     }
 
-    .section-title::after {
-        content: "";
-        display: block;
-        width: 70px;
-        height: 4px;
-        background: var(--blue-mid);
-        border-radius: 3px;
-        margin-top: 12px;
-    }
-
-    .section-sub {
-        color: var(--text-muted);
-        max-width: 720px;
-        margin-bottom: 40px;
-        font-size: 1.05rem;
-    }
-
-    /* ШАПКА */
-    header {
-        background: var(--white);
-        box-shadow: 0 2px 14px rgba(13, 71, 161, 0.12);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-
-    .header-inner {
+    /* ===== HEADER ===== */
+    .header {
+        background: var(--navy);
+        color: #fff;
+        padding: 0 18px;
+        height: 58px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 0;
-        flex-wrap: wrap;
-        gap: 14px;
+        gap: 12px;
+        flex-shrink: 0;
+        z-index: 10;
     }
 
-    .logo {
+    .header-left {
         display: flex;
         align-items: center;
         gap: 12px;
-        font-size: 1.35rem;
-        font-weight: 800;
-        color: var(--blue-dark);
-        letter-spacing: 0.5px;
+        min-width: 0;
+        flex: 1;
     }
 
-    .logo-mark {
-        width: 44px;
-        height: 44px;
-        background: var(--blue-dark);
-        color: #fff;
-        border-radius: 10px;
+    .brand-mark {
+        width: 34px;
+        height: 34px;
+        background: #fff;
+        color: var(--navy);
+        border-radius: 9px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.4rem;
-        font-weight: 800;
-        box-shadow: 0 4px 12px rgba(13, 71, 161, 0.35);
+        font-size: 1rem;
+        font-weight: 700;
+        flex-shrink: 0;
     }
 
-    .logo span { color: var(--blue-mid); font-weight: 400; }
-
-    nav ul { display: flex; list-style: none; gap: 6px; flex-wrap: wrap; }
-
-    nav a {
-        text-decoration: none;
-        color: var(--blue-dark);
+    .brand-name {
+        font-size: 0.94rem;
         font-weight: 600;
-        font-size: 0.95rem;
-        padding: 9px 14px;
-        border-radius: 8px;
-        transition: all 0.25s ease;
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    nav a:hover { background: var(--blue-light); color: var(--blue-deep); }
+    .brand-name small {
+        display: block;
+        font-size: 0.68rem;
+        font-weight: 400;
+        color: #93B0CE;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-top: 1px;
+    }
 
-    /* ГЛАВНАЯ */
-    .hero {
-        background: linear-gradient(135deg, #0D47A1 0%, #1A237E 60%, #1565C0 100%);
+    .menu-btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.08);
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        flex-shrink: 0;
+        transition: background 0.2s;
+    }
+
+    .menu-btn:active { background: rgba(255, 255, 255, 0.18); }
+
+    .menu-btn span {
+        width: 16px;
+        height: 1.6px;
+        background: #fff;
+        border-radius: 1px;
+        transition: transform 0.25s;
+    }
+
+    .menu-btn.active span:nth-child(1) { transform: translateY(5.6px) rotate(45deg); }
+    .menu-btn.active span:nth-child(2) { opacity: 0; }
+    .menu-btn.active span:nth-child(3) { transform: translateY(-5.6px) rotate(-45deg); }
+
+    /* ===== SCREENS ===== */
+    .screens { flex: 1; position: relative; overflow: hidden; }
+
+    .screen {
+        position: absolute;
+        inset: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 22px 20px 80px;
+        background: var(--bg);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.22s ease, visibility 0.22s;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .screen.active { opacity: 1; visibility: visible; }
+
+    .screen::-webkit-scrollbar { width: 4px; }
+    .screen::-webkit-scrollbar-thumb { background: #C8D2E0; border-radius: 2px; }
+
+    /* ===== HEADINGS ===== */
+    .page-title { font-size: 1.4rem; color: var(--text); margin-bottom: 6px; }
+
+    .page-sub { color: var(--text-2); font-size: 0.92rem; margin-bottom: 22px; max-width: 500px; }
+
+    .section-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-3);
+        margin: 26px 0 10px;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: var(--navy);
         color: #fff;
-        padding: 90px 0 100px;
+        padding: 12px 22px;
+        border: none;
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.18s, transform 0.12s;
+        font-family: inherit;
+        text-align: center;
+        width: 100%;
+        letter-spacing: 0.01em;
+    }
+
+    .btn:active { background: var(--navy-2); transform: scale(0.99); }
+
+    .btn-ghost {
+        background: #fff;
+        color: var(--navy);
+        border: 1px solid var(--line);
+    }
+
+    .btn-ghost:active { background: var(--blue-soft); }
+
+    /* ===== HOME ===== */
+    .home-block {
+        background: linear-gradient(155deg, #123A5E 0%, #1B4B77 100%);
+        color: #fff;
+        padding: 34px 26px 30px;
+        border-radius: var(--radius);
+        margin-bottom: 18px;
         position: relative;
         overflow: hidden;
     }
 
-    .hero::before {
+    .home-block::after {
         content: "";
         position: absolute;
-        width: 620px; height: 620px;
-        background: rgba(255, 255, 255, 0.06);
+        width: 220px; height: 220px;
         border-radius: 50%;
-        top: -260px; right: -180px;
+        background: rgba(255, 255, 255, 0.04);
+        top: -80px; right: -70px;
     }
 
-    .hero::after {
-        content: "";
-        position: absolute;
-        width: 380px; height: 380px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 50%;
-        bottom: -180px; left: -120px;
-    }
-
-    .hero-inner {
-        position: relative;
-        z-index: 2;
-        display: grid;
-        grid-template-columns: 1.3fr 1fr;
-        gap: 60px;
-        align-items: center;
-    }
-
-    .hero-badge {
+    .home-eyebrow {
         display: inline-block;
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        padding: 7px 18px;
-        border-radius: 30px;
-        font-size: 0.85rem;
-        letter-spacing: 1.5px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        margin-bottom: 24px;
+        color: #9EB8D2;
+        margin-bottom: 16px;
+        position: relative;
     }
 
-    .hero h1 { font-size: 3rem; margin-bottom: 22px; }
-
-    .hero h1 em { font-style: normal; color: #90CAF9; }
-
-    .hero p {
-        font-size: 1.15rem;
-        color: #D6E4F7;
-        max-width: 560px;
-        margin-bottom: 34px;
+    .home-block h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 14px;
+        line-height: 1.3;
+        letter-spacing: -0.015em;
+        position: relative;
     }
 
-    .btn {
-        display: inline-block;
-        background: #fff;
-        color: var(--blue-dark);
-        padding: 15px 34px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 1rem;
-        border: none;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    .home-block p {
+        font-size: 0.93rem;
+        color: #C5D4E4;
+        margin-bottom: 22px;
+        line-height: 1.6;
+        position: relative;
     }
 
-    .btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
-        background: var(--blue-light);
-    }
+    .home-buttons { display: flex; flex-direction: column; gap: 9px; position: relative; }
 
-    .btn-outline {
+    .home-buttons .btn { background: #fff; color: var(--navy); }
+    .home-buttons .btn:active { background: #E3ECF6; }
+
+    .home-buttons .btn.ghost {
         background: transparent;
         color: #fff;
-        border: 2px solid rgba(255, 255, 255, 0.6);
-        box-shadow: none;
-        margin-left: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+    .home-buttons .btn.ghost:active { background: rgba(255, 255, 255, 0.1); }
+
+    /* ===== DIRECTOR ===== */
+    .director {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 22px;
+        border: 1px solid var(--line);
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        margin-bottom: 18px;
     }
 
-    .btn-outline:hover {
-        background: rgba(255, 255, 255, 0.12);
+    .director-avatar {
+        width: 62px; height: 62px;
+        background: linear-gradient(145deg, #2A6DB0, #123A5E);
         color: #fff;
-        border-color: #fff;
-    }
-
-    .director-card {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 20px;
-        padding: 28px;
-        text-align: center;
-        backdrop-filter: blur(6px);
-    }
-
-    .director-photo {
-        width: 170px; height: 170px;
-        margin: 0 auto 18px;
         border-radius: 50%;
-        background: linear-gradient(145deg, #90CAF9, #1565C0);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 3.6rem;
-        font-weight: 800;
-        color: #fff;
-        border: 5px solid rgba(255, 255, 255, 0.45);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        font-size: 1.2rem;
+        font-weight: 600;
+        flex-shrink: 0;
+        letter-spacing: -0.02em;
     }
 
-    .director-card h3 { font-size: 1.25rem; margin-bottom: 4px; }
+    .director-info h3 { font-size: 1rem; color: var(--text); margin-bottom: 3px; }
 
     .director-role {
-        color: #90CAF9;
-        font-size: 0.95rem;
+        font-size: 0.74rem;
         font-weight: 600;
-        letter-spacing: 1px;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
+        color: var(--blue);
+        margin-bottom: 10px;
     }
 
     .director-quote {
-        margin-top: 18px;
-        padding-top: 18px;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 0.86rem;
+        color: var(--text-2);
         font-style: italic;
-        color: #D6E4F7;
-        font-size: 0.95rem;
+        padding-left: 12px;
+        border-left: 2px solid var(--blue-soft);
+        line-height: 1.5;
     }
 
-    /* О НАС */
-    .about { background: var(--white); }
+    /* ===== STATS ===== */
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 
-    .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        align-items: center;
-        margin-bottom: 60px;
+    .stat {
+        background: #fff;
+        border-radius: var(--radius-sm);
+        padding: 18px 16px;
+        border: 1px solid var(--line);
     }
 
-    .about-text p { margin-bottom: 16px; color: #3a4a5a; }
-
-    .about-stats {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-
-    .stat-box {
-        background: var(--blue-light);
-        border-left: 5px solid var(--blue-mid);
-        padding: 22px;
-        border-radius: 12px;
-        transition: transform 0.25s ease;
-    }
-
-    .stat-box:hover { transform: translateY(-5px); }
-
-    .stat-number {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--blue-dark);
-    }
-
-    .stat-label {
-        color: var(--text-muted);
-        font-size: 0.92rem;
-        font-weight: 600;
-    }
-
-    .team {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 24px;
-        margin-bottom: 60px;
-    }
-
-    .team-card {
-        background: var(--gray);
-        border-radius: 16px;
-        padding: 28px 20px;
-        text-align: center;
-        transition: all 0.3s ease;
-        border: 1px solid transparent;
-    }
-
-    .team-card:hover {
-        background: var(--white);
-        border-color: var(--blue-soft);
-        box-shadow: 0 12px 30px rgba(13, 71, 161, 0.12);
-        transform: translateY(-6px);
-    }
-
-    .team-avatar {
-        width: 90px; height: 90px;
-        border-radius: 50%;
-        margin: 0 auto 16px;
-        background: linear-gradient(145deg, var(--blue-mid), var(--blue-deep));
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.6rem;
+    .stat-value {
+        font-size: 1.45rem;
         font-weight: 700;
+        color: var(--navy);
+        letter-spacing: -0.02em;
     }
 
-    .team-card h4 { color: var(--blue-deep); font-size: 1.05rem; margin-bottom: 4px; }
-    .team-card span { color: var(--text-muted); font-size: 0.88rem; }
+    .stat-label { font-size: 0.76rem; color: var(--text-3); font-weight: 500; margin-top: 3px; }
 
-    .projects-title {
-        color: var(--blue-deep);
-        font-size: 1.5rem;
-        margin-bottom: 24px;
-    }
-
-    .directions-table {
-        width: 100%;
-        border-collapse: collapse;
-        border-radius: 14px;
-        overflow: hidden;
-        box-shadow: 0 6px 24px rgba(13, 71, 161, 0.1);
-    }
-
-    .directions-table thead { background: var(--blue-dark); color: #fff; }
-
-    .directions-table th,
-    .directions-table td {
-        padding: 16px 20px;
-        text-align: left;
-        font-size: 0.95rem;
-    }
-
-    .directions-table tbody tr {
+    /* ===== ABOUT ===== */
+    .prose {
         background: #fff;
-        border-bottom: 1px solid #e8eef6;
+        border-radius: var(--radius);
+        padding: 22px;
+        border: 1px solid var(--line);
     }
 
-    .directions-table tbody tr:nth-child(even) { background: var(--blue-light); }
-    .directions-table tbody tr:hover { background: var(--blue-soft); }
-    .directions-table th { font-weight: 700; letter-spacing: 0.5px; }
-
-    /* НОВОСТИ */
-    .news { background: var(--gray); }
-
-    .carousel {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 26px;
+    .prose p {
+        font-size: 0.92rem;
+        color: var(--text-2);
+        margin-bottom: 12px;
+        line-height: 1.65;
     }
 
-    .news-card {
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--text); font-weight: 600; }
+
+    .team-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .member {
         background: #fff;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 6px 20px rgba(13, 71, 161, 0.1);
-        transition: all 0.3s ease;
+        padding: 14px 16px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--line);
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        transition: border-color 0.2s;
     }
 
-    .news-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 18px 40px rgba(13, 71, 161, 0.2);
-    }
+    .member:hover { border-color: #C7D4E5; }
 
-    .news-img {
-        height: 160px;
-        background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
+    .member-avatar {
+        width: 42px; height: 42px;
+        background: linear-gradient(145deg, #2A6DB0, #123A5E);
+        color: #fff;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2.6rem;
-        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.85rem;
+        font-weight: 600;
+        flex-shrink: 0;
     }
 
-    .news-body {
-        padding: 24px;
-        flex: 1;
+    .member-info h4 { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 1px; }
+    .member-info span { font-size: 0.78rem; color: var(--text-3); }
+
+    .dir-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .dir-row {
+        background: #fff;
+        padding: 15px 18px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--line);
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
     }
+
+    .dir-row-info strong {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 2px;
+    }
+
+    .dir-row-info span { font-size: 0.78rem; color: var(--text-3); }
+
+    .dir-share {
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--blue);
+        background: var(--blue-soft);
+        padding: 4px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* ===== CLIMATE ===== */
+    .climate-header {
+        background: linear-gradient(155deg, #123A5E 0%, #1B4B77 100%);
+        color: #fff;
+        padding: 28px 24px;
+        border-radius: var(--radius);
+        margin-bottom: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .climate-header::after {
+        content: "";
+        position: absolute;
+        width: 200px; height: 200px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        top: -70px; right: -60px;
+    }
+
+    .climate-header .tag {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #9EB8D2;
+        margin-bottom: 12px;
+        display: block;
+        position: relative;
+    }
+
+    .climate-header h1 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .climate-header p {
+        font-size: 0.88rem;
+        color: #C5D4E4;
+        line-height: 1.55;
+        position: relative;
+    }
+
+    .climate-section {
+        background: #fff;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        margin-bottom: 14px;
+        overflow: hidden;
+    }
+
+    .climate-section-head {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: #FBFCFE;
+    }
+
+    .climate-section-head .marker {
+        width: 36px; height: 36px;
+        background: var(--blue-soft);
+        color: var(--blue);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.82rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .climate-section.bio .climate-section-head .marker {
+        background: var(--green-soft);
+        color: var(--green);
+    }
+
+    .climate-section-head h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 2px;
+    }
+
+    .climate-section-head .meta { font-size: 0.76rem; color: var(--text-3); }
+
+    .climate-section-body { padding: 20px; }
+
+    .climate-section-body p {
+        font-size: 0.9rem;
+        color: var(--text-2);
+        line-height: 1.65;
+        margin-bottom: 14px;
+    }
+
+    .climate-section-body p:last-child { margin-bottom: 0; }
+
+    .subhead {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-3);
+        margin: 18px 0 10px;
+    }
+
+    .subhead:first-child { margin-top: 0; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .chip {
+        display: inline-block;
+        padding: 5px 12px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        border-radius: 20px;
+        background: var(--blue-soft);
+        color: var(--blue);
+    }
+
+    .climate-section.bio .chip { background: var(--green-soft); color: var(--green); }
+
+    .feature-list { list-style: none; }
+
+    .feature-list li {
+        padding: 9px 0 9px 24px;
+        font-size: 0.88rem;
+        color: var(--text-2);
+        position: relative;
+        line-height: 1.55;
+        border-bottom: 1px solid var(--line-2);
+    }
+
+    .feature-list li:last-child { border-bottom: none; }
+
+    .feature-list li::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 16px;
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--blue);
+    }
+
+    .climate-section.bio .feature-list li::before { background: var(--green); }
+
+    .motto {
+        background: linear-gradient(155deg, #123A5E 0%, #1B4B77 100%);
+        color: #fff;
+        padding: 26px 24px;
+        border-radius: var(--radius);
+        text-align: center;
+        margin-top: 4px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .motto::after {
+        content: "";
+        position: absolute;
+        width: 180px; height: 180px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        bottom: -80px; left: -60px;
+    }
+
+    .motto h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; position: relative; }
+
+    .motto p {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #9EB8D2;
+        position: relative;
+    }
+
+    /* ===== NEWS ===== */
+    .news-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .news-item {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        transition: border-color 0.2s, transform 0.15s;
+        cursor: pointer;
+    }
+
+    .news-item:hover,
+    .news-item:active { border-color: #C7D4E5; transform: translateY(-1px); }
 
     .news-date {
-        font-size: 0.8rem;
-        color: var(--blue-mid);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--text-3);
+        text-transform: uppercase;
+        margin-bottom: 7px;
+    }
+
+    .news-item h4 {
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+    }
+
+    .news-item p {
+        font-size: 0.87rem;
+        color: var(--text-2);
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+
+    .news-link {
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: var(--blue);
+        text-decoration: none;
+    }
+
+    .news-link::after { content: " →"; }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 30, 50, 0.55);
+        z-index: 200;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.25s, visibility 0.25s;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+    }
+
+    .modal-overlay.show { opacity: 1; visibility: visible; }
+
+    .modal {
+        background: #fff;
+        width: 100%;
+        max-width: 640px;
+        max-height: 92vh;
+        max-height: 92dvh;
+        border-radius: 20px 20px 0 0;
+        transform: translateY(30px);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .modal-overlay.show .modal { transform: translateY(0); }
+
+    .modal-head {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-shrink: 0;
+        background: #fff;
+    }
+
+    .modal-head .label {
+        font-size: 0.7rem;
         font-weight: 700;
-        letter-spacing: 1px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-3);
+    }
+
+    .modal-close {
+        width: 36px;
+        height: 36px;
+        background: var(--bg);
+        border: none;
+        border-radius: 9px;
+        color: var(--text-2);
+        cursor: pointer;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: inherit;
+        flex-shrink: 0;
+        transition: background 0.15s;
+    }
+
+    .modal-close:active { background: var(--blue-soft); }
+
+    .modal-body {
+        padding: 24px 22px 32px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .modal-body::-webkit-scrollbar { width: 4px; }
+    .modal-body::-webkit-scrollbar-thumb { background: #C8D2E0; border-radius: 2px; }
+
+    .modal-date {
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--blue);
         text-transform: uppercase;
         margin-bottom: 10px;
     }
 
-    .news-body h4 { color: var(--blue-deep); font-size: 1.1rem; margin-bottom: 10px; }
-    .news-body p { color: var(--text-muted); font-size: 0.93rem; flex: 1; margin-bottom: 16px; }
-
-    .news-link {
-        color: var(--blue-dark);
-        font-weight: 700;
-        text-decoration: none;
-        font-size: 0.92rem;
-        transition: color 0.2s;
+    .modal-body h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 18px;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
     }
 
-    .news-link:hover { color: var(--blue-mid); text-decoration: underline; }
-
-    /* ПРОДУКТЫ */
-    .products { background: var(--white); }
-
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 26px;
-        margin-bottom: 60px;
+    .modal-body p {
+        font-size: 0.94rem;
+        color: var(--text-2);
+        line-height: 1.7;
+        margin-bottom: 14px;
     }
 
-    .product-card {
+    .modal-body p:last-child { margin-bottom: 0; }
+
+    .modal-body strong { color: var(--text); font-weight: 600; }
+
+    .modal-body .quote {
+        margin: 20px 0;
+        padding: 14px 18px;
+        background: var(--blue-soft);
+        border-radius: var(--radius-sm);
+        font-size: 0.9rem;
+        color: var(--blue);
+        font-weight: 500;
+        line-height: 1.55;
+    }
+
+    /* ===== PRODUCTS ===== */
+    .product-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .product-item {
         background: #fff;
-        border: 1px solid #e3ebf6;
-        border-radius: 18px;
-        padding: 32px 26px;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
+        border-radius: var(--radius);
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
     }
 
-    .product-card::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 5px;
-        background: linear-gradient(90deg, var(--blue-dark), var(--blue-mid));
-    }
-
-    .product-card:hover {
-        box-shadow: 0 16px 40px rgba(13, 71, 161, 0.16);
-        transform: translateY(-8px);
-        border-color: var(--blue-soft);
-    }
-
-    .product-icon {
-        width: 60px; height: 60px;
-        background: var(--blue-light);
-        color: var(--blue-dark);
-        border-radius: 14px;
+    .product-num {
+        width: 32px; height: 32px;
+        background: var(--blue-soft);
+        color: var(--blue);
+        border-radius: 9px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.7rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .product-item h4 {
+        font-size: 0.96rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 5px;
+    }
+
+    .product-item p { font-size: 0.86rem; color: var(--text-2); line-height: 1.55; }
+
+    /* ===== CONTACTS ===== */
+    .contacts-list {
+        background: #fff;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        overflow: hidden;
         margin-bottom: 20px;
     }
 
-    .product-card h4 { color: var(--blue-deep); font-size: 1.15rem; margin-bottom: 10px; }
-    .product-card p { color: var(--text-muted); font-size: 0.93rem; }
-
-    .projects {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 20px;
-    }
-
-    .project-item {
-        background: var(--blue-light);
-        border-radius: 14px;
-        padding: 24px;
-        border-left: 5px solid var(--blue-mid);
-        transition: all 0.25s ease;
-    }
-
-    .project-item:hover { background: var(--blue-soft); transform: translateX(6px); }
-
-    .project-item strong {
-        display: block;
-        color: var(--blue-deep);
-        margin-bottom: 6px;
-        font-size: 1.02rem;
-    }
-
-    .project-item span { color: var(--text-muted); font-size: 0.9rem; }
-
-    /* КОНТАКТЫ */
-    .contacts {
-        background: linear-gradient(135deg, #0D47A1 0%, #1A237E 100%);
-        color: #fff;
-    }
-
-    .contacts .section-title { color: #fff; }
-    .contacts .section-title::after { background: #90CAF9; }
-    .contacts .section-sub { color: #C9DCF5; }
-
-    .contacts-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 50px;
-        align-items: start;
-    }
-
-    .contact-info p {
-        margin-bottom: 18px;
-        color: #D6E4F7;
+    .contact-line {
+        padding: 14px 18px;
         display: flex;
-        align-items: center;
+        justify-content: space-between;
         gap: 12px;
-        font-size: 1rem;
-    }
-
-    .contact-info .ico {
-        width: 40px; height: 40px;
-        background: rgba(255, 255, 255, 0.14);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        font-size: 1.1rem;
-    }
-
-    .contact-form {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 18px;
-        padding: 34px;
-        backdrop-filter: blur(6px);
-    }
-
-    .form-group { margin-bottom: 20px; }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 8px;
         font-size: 0.9rem;
-        font-weight: 600;
-        color: #D6E4F7;
+        border-bottom: 1px solid var(--line-2);
     }
 
-    .form-group input,
-    .form-group textarea {
+    .contact-line:last-child { border-bottom: none; }
+
+    .contact-line .label {
+        color: var(--text-3);
+        font-weight: 500;
+        flex-shrink: 0;
+        min-width: 90px;
+        font-size: 0.82rem;
+    }
+
+    .contact-line .value {
+        color: var(--text);
+        font-weight: 500;
+        text-align: right;
+        font-size: 0.88rem;
+        word-break: break-all;
+    }
+
+    .form {
+        background: #fff;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        padding: 22px 20px;
+    }
+
+    .field { margin-bottom: 16px; }
+
+    .field label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--text-2);
+        margin-bottom: 7px;
+    }
+
+    .field input,
+    .field textarea {
         width: 100%;
-        padding: 13px 16px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
+        padding: 12px 14px;
+        border: 1.5px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: #FBFCFE;
+        color: var(--text);
         font-family: inherit;
-        font-size: 0.95rem;
-        transition: all 0.2s;
+        font-size: 0.92rem;
+        transition: border-color 0.15s, background 0.15s;
         outline: none;
     }
 
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: #9FB8DA; }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        border-color: #90CAF9;
-        background: rgba(255, 255, 255, 0.16);
-        box-shadow: 0 0 0 4px rgba(144, 202, 249, 0.15);
+    .field input:focus,
+    .field textarea:focus {
+        border-color: var(--blue);
+        background: #fff;
     }
 
-    .form-group textarea { resize: vertical; min-height: 120px; }
+    .field textarea { resize: vertical; min-height: 100px; font-family: inherit; }
 
-    .contact-form .btn { width: 100%; background: #fff; color: var(--blue-dark); }
-    .contact-form .btn:hover { background: var(--blue-light); }
-
-    /* КАРЬЕРА */
-    .career { background: var(--gray); }
-
-    .vacancies { display: grid; gap: 20px; }
+    /* ===== CAREER ===== */
+    .vacancy-list { display: flex; flex-direction: column; gap: 10px; }
 
     .vacancy {
         background: #fff;
-        border-radius: 16px;
-        padding: 28px 30px;
-        box-shadow: 0 4px 18px rgba(13, 71, 161, 0.08);
-        border-left: 6px solid var(--blue-mid);
-        transition: all 0.25s ease;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 20px;
-        align-items: center;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        padding: 20px;
     }
 
-    .vacancy:hover {
-        box-shadow: 0 12px 34px rgba(13, 71, 161, 0.16);
-        transform: translateY(-4px);
-        border-left-color: var(--blue-dark);
+    .vacancy-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 10px;
     }
 
-    .vacancy h4 { color: var(--blue-deep); font-size: 1.2rem; margin-bottom: 8px; }
-    .vacancy p { color: var(--text-muted); font-size: 0.93rem; margin-bottom: 6px; }
+    .vacancy h4 {
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.35;
+    }
 
-    .vacancy-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .vacancy-type {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--text-3);
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding-top: 3px;
+    }
 
-    .tag {
-        background: var(--blue-light);
-        color: var(--blue-dark);
-        padding: 5px 13px;
+    .vacancy p {
+        font-size: 0.87rem;
+        color: var(--text-2);
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+
+    .vacancy-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+
+    .vacancy-tag {
+        font-size: 0.75rem;
+        color: var(--text-2);
+        padding: 4px 11px;
         border-radius: 20px;
-        font-size: 0.8rem;
+        background: var(--bg);
+    }
+
+    .vacancy .btn { font-size: 0.86rem; padding: 11px; }
+
+    /* ===== DRAWER ===== */
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 30, 50, 0.45);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.22s;
+        z-index: 100;
+    }
+
+    .overlay.show { opacity: 1; visibility: visible; }
+
+    .drawer {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 82%;
+        max-width: 320px;
+        height: 100vh;
+        height: 100dvh;
+        background: linear-gradient(180deg, #123A5E 0%, #1B4B77 100%);
+        color: #fff;
+        z-index: 101;
+        transition: right 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .drawer.open { right: 0; }
+
+    .drawer-head {
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-shrink: 0;
+        height: 58px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .drawer-head .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
         font-weight: 600;
     }
 
-    .vacancy .btn {
-        background: var(--blue-dark);
+    .drawer-head .brand-mark {
+        width: 30px; height: 30px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+
+    .drawer-close {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.08);
+        border: none;
+        border-radius: 9px;
         color: #fff;
-        padding: 12px 26px;
-        font-size: 0.92rem;
-        box-shadow: none;
-        white-space: nowrap;
-    }
-
-    .vacancy .btn:hover {
-        background: var(--blue-mid);
-        box-shadow: 0 8px 20px rgba(13, 71, 161, 0.3);
-    }
-
-    /* ФУТЕР */
-    footer { background: #0A2E63; color: #C9DCF5; padding: 60px 0 26px; }
-
-    .footer-grid {
-        display: grid;
-        grid-template-columns: 1.4fr 1fr 1fr;
-        gap: 44px;
-        margin-bottom: 44px;
-    }
-
-    .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 1.3rem;
-        font-weight: 800;
-        color: #fff;
-        margin-bottom: 18px;
-    }
-
-    .footer-logo .logo-mark { background: #fff; color: var(--blue-dark); }
-
-    .footer-about p {
-        font-size: 0.93rem;
-        color: #A9C2E4;
-        max-width: 340px;
-    }
-
-    .footer-col h5 {
-        color: #fff;
-        font-size: 1.05rem;
-        margin-bottom: 18px;
-        letter-spacing: 0.5px;
-    }
-
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 11px; }
-
-    .footer-col a {
-        color: #A9C2E4;
-        text-decoration: none;
-        font-size: 0.93rem;
-        transition: color 0.2s;
-    }
-
-    .footer-col a:hover { color: #fff; }
-
-    .socials { display: flex; gap: 12px; margin-top: 18px; }
-
-    .socials a {
-        width: 42px; height: 42px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 11px;
+        cursor: pointer;
+        font-size: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 0.85rem;
-        transition: all 0.25s ease;
+        line-height: 1;
+        font-family: inherit;
     }
 
-    .socials a:hover { background: var(--blue-mid); transform: translateY(-4px); }
+    .drawer-close:active { background: rgba(255, 255, 255, 0.18); }
 
-    .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.12);
-        padding-top: 24px;
+    .drawer-label {
+        padding: 20px 22px 8px;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #7E9CBB;
+        font-weight: 600;
+    }
+
+    .drawer-nav { list-style: none; padding: 0 12px; }
+
+    .drawer-nav a {
         display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        align-items: center;
         gap: 14px;
-        font-size: 0.86rem;
-        color: #8FAED6;
-    }
-
-    .footer-bottom a {
-        color: #8FAED6;
+        color: #C5D4E4;
         text-decoration: none;
-        margin-left: 18px;
+        padding: 13px 12px;
+        font-size: 0.94rem;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: color 0.15s, background 0.15s;
+        margin-bottom: 2px;
     }
 
-    .footer-bottom a:hover { color: #fff; text-decoration: underline; }
+    .drawer-nav a:active { background: rgba(255, 255, 255, 0.08); }
 
-    /* АДАПТИВ */
-    @media (max-width: 900px) {
-        .hero-inner { grid-template-columns: 1fr; gap: 44px; }
-        .hero h1 { font-size: 2.3rem; }
-        .about-grid { grid-template-columns: 1fr; gap: 34px; }
-        .contacts-grid { grid-template-columns: 1fr; gap: 36px; }
-        .footer-grid { grid-template-columns: 1fr 1fr; }
-        .vacancy { grid-template-columns: 1fr; }
+    .drawer-nav a.active { color: #fff; background: rgba(255, 255, 255, 0.1); }
+
+    .drawer-nav .num {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #7E9CBB;
+        width: 22px;
+        flex-shrink: 0;
+        letter-spacing: 0.04em;
     }
 
-    @media (max-width: 640px) {
-        section { padding: 56px 0; }
-        .hero { padding: 64px 0 76px; }
-        .hero h1 { font-size: 1.9rem; }
-        .hero p { font-size: 1rem; }
-        .btn-outline { margin-left: 0; margin-top: 12px; }
-        .hero .btn { display: block; text-align: center; }
-        .about-stats { grid-template-columns: 1fr; }
-        .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-        .footer-bottom { flex-direction: column; }
-        .footer-bottom a { margin-left: 0; margin-right: 16px; }
-        .header-inner { flex-direction: column; align-items: flex-start; }
-        nav ul { gap: 2px; }
-        nav a { font-size: 0.88rem; padding: 7px 10px; }
-        .section-title { font-size: 1.6rem; }
+    .drawer-nav a.active .num { color: #9EB8D2; }
+
+    .drawer-foot {
+        margin-top: auto;
+        padding: 20px 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.74rem;
+        color: #7E9CBB;
+    }
+
+    /* ===== DESKTOP ===== */
+    @media (min-width: 660px) {
+        body { background: #E4EAF1; }
+        .app {
+            margin: 24px auto;
+            height: calc(100vh - 48px);
+            max-width: 700px;
+            border-radius: 20px;
+            box-shadow: 0 16px 50px rgba(18, 58, 94, 0.14);
+            overflow: hidden;
+        }
+        .screen { padding: 28px 28px 80px; }
+        .home-block { padding: 42px 36px 36px; }
+        .home-block h1 { font-size: 1.75rem; }
+        .home-buttons { flex-direction: row; }
+        .home-buttons .btn { flex: 1; }
+        .stats-grid { grid-template-columns: repeat(4, 1fr); }
+        .page-title { font-size: 1.55rem; }
+        .climate-header { padding: 36px 32px; }
+        .climate-header h1 { font-size: 1.5rem; }
+        .modal {
+            border-radius: 20px;
+            max-height: 85vh;
+            margin-bottom: 40px;
+        }
+        .modal-overlay { align-items: center; padding: 24px; }
     }
 </style>
 </head>
 <body>
 
-<!-- ШАПКА -->
-<header>
-    <div class="container header-inner">
-        <div class="logo">
-            <div class="logo-mark">A</div>
-            Aimatov<span>Corporation</span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#products">Продукты/Услуги</a></li>
-                <li><a href="#news">Новости и события</a></li>
-                <li><a href="#contacts">Контакты</a></li>
-                <li><a href="#career">Карьера</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<div class="app">
 
-<!-- ГЛАВНАЯ -->
-<section class="hero" id="home">
-    <div class="container hero-inner">
-        <div>
-            <span class="hero-badge">Инновации с 2008 года</span>
-            <h1>Ведущая компания в <em>инновационных решениях</em></h1>
-            <p>Aimatov Corporation разрабатывает технологии будущего: цифровые платформы, промышленную автоматизацию и интеллектуальные системы для бизнеса по всему миру.</p>
-            <a href="#products" class="btn">Наши решения</a>
-            <a href="#contacts" class="btn btn-outline">Связаться с нами</a>
-        </div>
-        <div class="director-card">
-            <div class="director-photo">АА</div>
-            <h3>Айматов Александр</h3>
-            <div class="director-role">Генеральный директор</div>
-            <div class="director-quote">«Мы не просто следуем за технологиями — мы создаём их.»</div>
-        </div>
-    </div>
-</section>
-
-<!-- О НАС -->
-<section class="about" id="about">
-    <div class="container">
-        <h2 class="section-title">О компании</h2>
-        <p class="section-sub">Более 15 лет мы создаём технологии, которые меняют отрасли и улучшают жизнь людей.</p>
-
-        <div class="about-grid">
-            <div class="about-text">
-                <p>Компания <strong>Aimatov Corporation</strong> была основана в 2008 году Александром Айматовым как небольшая инженерная студия. Сегодня это международный холдинг с офисами в четырёх странах и более чем 500 сотрудниками.</p>
-                <p>Мы специализируемся на разработке программного обеспечения, промышленной автоматизации, облачных инфраструктурах и решениях в области искусственного интеллекта. Наши клиенты — от стартапов до корпораций из списка Fortune 500.</p>
-                <p>Наша миссия — делать сложные технологии простыми и доступными для бизнеса любого масштаба.</p>
+    <header class="header">
+        <div class="header-left">
+            <div class="brand-mark">A</div>
+            <div class="brand-name">
+                Aimatov Corporation
+                <small>Est. 2008</small>
             </div>
-            <div class="about-stats">
-                <div class="stat-box">
-                    <div class="stat-number">15+</div>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main class="screens">
+
+        <!-- ГЛАВНАЯ -->
+        <section class="screen active" id="home">
+            <div class="home-block">
+                <span class="home-eyebrow">Инновации с 2008 года</span>
+                <h1>Инженерные решения и технологии для промышленности</h1>
+                <p>Разрабатываем программные платформы, системы автоматизации и инфраструктурные решения для компаний в четырёх странах.</p>
+                <div class="home-buttons">
+                    <button class="btn" onclick="goTo('climate')">Проект Climate Park</button>
+                    <button class="btn ghost" onclick="goTo('contacts')">Связаться с нами</button>
+                </div>
+            </div>
+
+            <div class="director">
+                <div class="director-avatar">АА</div>
+                <div class="director-info">
+                    <h3>Айматов Александр</h3>
+                    <div class="director-role">Генеральный директор</div>
+                    <div class="director-quote">«Технологии должны работать на бизнес, а не наоборот.»</div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">15+</div>
                     <div class="stat-label">лет на рынке</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number">500+</div>
+                <div class="stat">
+                    <div class="stat-value">500+</div>
                     <div class="stat-label">сотрудников</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number">1200</div>
-                    <div class="stat-label">реализованных проектов</div>
+                <div class="stat">
+                    <div class="stat-value">1200</div>
+                    <div class="stat-label">проектов</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">страны присутствия</div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">страны</div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <h3 class="projects-title">Ключевые сотрудники и команда</h3>
-        <div class="team">
-            <div class="team-card">
-                <div class="team-avatar">АА</div>
-                <h4>Айматов Александр</h4>
-                <span>Генеральный директор</span>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">ЕС</div>
-                <h4>Елена Соколова</h4>
-                <span>Технический директор</span>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">ДК</div>
-                <h4>Дмитрий Ковалёв</h4>
-                <span>Директор по продуктам</span>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">МН</div>
-                <h4>Мария Новикова</h4>
-                <span>Руководитель HR</span>
-            </div>
-        </div>
+        <!-- О НАС -->
+        <section class="screen" id="about">
+            <h2 class="page-title">О компании</h2>
+            <p class="page-sub">Инженерный холдинг с международным присутствием.</p>
 
-        <h3 class="projects-title">Направления деятельности</h3>
-        <table class="directions-table">
-            <thead>
-                <tr>
-                    <th>Направление</th>
-                    <th>Описание</th>
-                    <th>Доля в выручке</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Разработка ПО</strong></td>
-                    <td>Корпоративные платформы, мобильные и веб-приложения</td>
-                    <td>40%</td>
-                </tr>
-                <tr>
-                    <td><strong>Промышленная автоматизация</strong></td>
-                    <td>Системы управления, IoT и умное производство</td>
-                    <td>25%</td>
-                </tr>
-                <tr>
-                    <td><strong>Облачные решения</strong></td>
-                    <td>Инфраструктура, DevOps и облачные сервисы</td>
-                    <td>20%</td>
-                </tr>
-                <tr>
-                    <td><strong>Искусственный интеллект</strong></td>
-                    <td>ML-модели, аналитика данных и компьютерное зрение</td>
-                    <td>15%</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
+            <div class="prose">
+                <p>Компания <strong>Aimatov Corporation</strong> основана в 2008 году как инженерная студия. Сегодня -- международный холдинг с офисами в четырёх странах и более чем 500 сотрудниками.</p>
+                <p>Основные компетенции: разработка корпоративного ПО, промышленная автоматизация, облачные инфраструктуры, решения на базе искусственного интеллекта.</p>
+                <p>Среди клиентов -- промышленные предприятия, финансовые организации, государственные структуры и научные институты.</p>
+            </div>
 
-<!-- НОВОСТИ -->
-<section class="news" id="news">
-    <div class="container">
-        <h2 class="section-title">Новости</h2>
-        <p class="section-sub">Последние события, пресс-релизы и достижения компании Aimatov Corporation.</p>
+            <div class="section-label">Руководство</div>
+            <div class="team-list">
+                <div class="member">
+                    <div class="member-avatar">АА</div>
+                    <div class="member-info">
+                        <h4>Айматов Александр</h4>
+                        <span>Генеральный директор</span>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">ЕС</div>
+                    <div class="member-info">
+                        <h4>Соколова Елена</h4>
+                        <span>Технический директор</span>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">ДК</div>
+                    <div class="member-info">
+                        <h4>Ковалёв Дмитрий</h4>
+                        <span>Директор по продуктам</span>
+                    </div>
+                </div>
+                <div class="member">
+                    <div class="member-avatar">МН</div>
+                    <div class="member-info">
+                        <h4>Новикова Мария</h4>
+                        <span>Директор по персоналу</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="carousel">
-            <article class="news-card">
-                <div class="news-img">🚀</div>
-                <div class="news-body">
+            <div class="section-label">Направления деятельности</div>
+            <div class="dir-list">
+                <div class="dir-row">
+                    <div class="dir-row-info">
+                        <strong>Разработка ПО</strong>
+                        <span>Корпоративные и мобильные платформы</span>
+                    </div>
+                    <div class="dir-share">35%</div>
+                </div>
+                <div class="dir-row">
+                    <div class="dir-row-info">
+                        <strong>Промышленная автоматизация</strong>
+                        <span>IoT и системы управления</span>
+                    </div>
+                    <div class="dir-share">22%</div>
+                </div>
+                <div class="dir-row">
+                    <div class="dir-row-info">
+                        <strong>Облачные решения</strong>
+                        <span>Инфраструктура и DevOps</span>
+                    </div>
+                    <div class="dir-share">18%</div>
+                </div>
+                <div class="dir-row">
+                    <div class="dir-row-info">
+                        <strong>Искусственный интеллект</strong>
+                        <span>ML-модели и аналитика данных</span>
+                    </div>
+                    <div class="dir-share">13%</div>
+                </div>
+                <div class="dir-row">
+                    <div class="dir-row-info">
+                        <strong>Climate Park & Biology</strong>
+                        <span>Управляемый климат и биоисследования</span>
+                    </div>
+                    <div class="dir-share">12%</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIMATE -->
+        <section class="screen" id="climate">
+            <div class="climate-header">
+                <span class="tag">Отдельный проект</span>
+                <h1>Climate Park & Biology</h1>
+                <p>Три гектара управляемой природы и исследовательский центр. Два объекта -- один инфраструктурный комплекс.</p>
+            </div>
+
+            <div class="climate-section">
+                <div class="climate-section-head">
+                    <div class="marker">01</div>
+                    <div>
+                        <h3>Aimatov Climate Park</h3>
+                        <div class="meta">2 гектара · 20 000 м² · управляемый климат</div>
+                    </div>
+                </div>
+                <div class="climate-section-body">
+                    <p>Закрытое пространство, в котором создаются любые климатические сценарии. Погодные условия переключаются по команде оператора -- от сухого жаркого воздуха до тропического ливня или тумана северного леса.</p>
+
+                    <div class="subhead">Сценарии</div>
+                    <div class="chips">
+                        <span class="chip">Пустынный</span>
+                        <span class="chip">Тропический</span>
+                        <span class="chip">Северный лес</span>
+                        <span class="chip">Штормовой</span>
+                    </div>
+
+                    <div class="subhead">Технические решения</div>
+                    <ul class="feature-list">
+                        <li>Полноспектральные LED-системы искусственного освещения</li>
+                        <li>Управляемые осадки через форсунки высокого давления</li>
+                        <li>Ветер от лёгкого бриза до штормового режима</li>
+                        <li>Собственная скважина и замкнутый цикл водоснабжения</li>
+                        <li>Гибридная энергетика с резервным подключением к сети</li>
+                    </ul>
+
+                    <div class="subhead">Применение</div>
+                    <p>Киносъёмки без выезда на натуру, тематические мероприятия с управляемой погодой, корпоративные и образовательные события.</p>
+                </div>
+            </div>
+
+            <div class="climate-section bio">
+                <div class="climate-section-head">
+                    <div class="marker">02</div>
+                    <div>
+                        <h3>Aimatov Biology</h3>
+                        <div class="meta">1 гектар · 10 000 м² · исследовательский центр</div>
+                    </div>
+                </div>
+                <div class="climate-section-body">
+                    <p>Научный комплекс для изучения влияния климатических условий на растения, микроорганизмы и материалы. Климатические камеры позволяют воспроизводить заданные режимы с высокой точностью.</p>
+
+                    <div class="subhead">Рабочий диапазон</div>
+                    <div class="chips">
+                        <span class="chip">−10 °C</span>
+                        <span class="chip">+50 °C</span>
+                        <span class="chip">20 % влажности</span>
+                        <span class="chip">95 % влажности</span>
+                    </div>
+
+                    <div class="subhead">Направления</div>
+                    <ul class="feature-list">
+                        <li>Климатические камеры с точной регулировкой температуры</li>
+                        <li>Контроль влажности в широком диапазоне</li>
+                        <li>Фитопроизводство в управляемой среде</li>
+                        <li>Исследование устойчивости биологических организмов</li>
+                        <li>Образовательные программы и стажировки</li>
+                    </ul>
+
+                    <div class="subhead">Партнёры</div>
+                    <p>Научные институты, университеты, агропромышленные компании и биотехнологические стартапы.</p>
+                </div>
+            </div>
+
+            <div class="motto">
+                <h3>Управляемая среда. Прогнозируемый результат.</h3>
+                <p>Aimatov Corporation · Climate Division</p>
+            </div>
+        </section>
+
+        <!-- НОВОСТИ -->
+        <section class="screen" id="news">
+            <h2 class="page-title">Новости</h2>
+            <p class="page-sub">Пресс-релизы и события компании.</p>
+
+            <div class="news-list">
+                <div class="news-item" onclick="openNews('news-1')">
+                    <div class="news-date">20 июня 2024</div>
+                    <h4>Открытие Aimatov Climate Park</h4>
+                    <p>Введён в эксплуатацию первый в регионе парк управляемого климата площадью 2 гектара.</p>
+                    <span class="news-link">Читать полностью</span>
+                </div>
+
+                <div class="news-item" onclick="openNews('news-2')">
                     <div class="news-date">15 мая 2024</div>
-                    <h4>Запуск платформы Aimatov Cloud 2.0</h4>
-                    <p>Мы представили обновлённую облачную платформу с поддержкой контейнеризации и встроенными инструментами аналитики.</p>
-                    <a href="#" class="news-link">Читать далее →</a>
+                    <h4>Релиз Aimatov Cloud 2.0</h4>
+                    <p>Обновление облачной платформы: контейнеризация, мониторинг и расширенная система ролей.</p>
+                    <span class="news-link">Читать полностью</span>
                 </div>
-            </article>
 
-            <article class="news-card">
-                <div class="news-img">🏆</div>
-                <div class="news-body">
+                <div class="news-item" onclick="openNews('news-3')">
                     <div class="news-date">2 апреля 2024</div>
-                    <h4>Награда «Инноватор года»</h4>
-                    <p>Компания получила национальную премию за вклад в развитие промышленной автоматизации и AI-технологий.</p>
-                    <a href="#" class="news-link">Читать далее →</a>
+                    <h4>Премия «Инноватор года»</h4>
+                    <p>Компания отмечена национальной премией за вклад в промышленную автоматизацию и прикладной ИИ.</p>
+                    <span class="news-link">Читать полностью</span>
                 </div>
-            </article>
 
-            <article class="news-card">
-                <div class="news-img">🤝</div>
-                <div class="news-body">
+                <div class="news-item" onclick="openNews('news-4')">
                     <div class="news-date">18 марта 2024</div>
-                    <h4>Стратегическое партнёрство</h4>
-                    <p>Подписано соглашение о сотрудничестве с ведущим европейским производителем промышленного оборудования.</p>
-                    <a href="#" class="news-link">Читать далее →</a>
+                    <h4>Запуск направления Climate-as-a-Service</h4>
+                    <p>Открыт коммерческий доступ к аренде климатических сценариев Climate Park для внешних клиентов.</p>
+                    <span class="news-link">Читать полностью</span>
                 </div>
-            </article>
-        </div>
-    </div>
-</section>
 
-<!-- ПРОДУКТЫ -->
-<section class="products" id="products">
-    <div class="container">
-        <h2 class="section-title">Наши решения</h2>
-        <p class="section-sub">Ключевые продукты и услуги, которые помогают бизнесу расти и развиваться.</p>
-
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-icon">💻</div>
-                <h4>Aimatov Platform</h4>
-                <p>Корпоративная платформа для управления бизнес-процессами, аналитики и автоматизации задач любого масштаба.</p>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">☁️</div>
-                <h4>Aimatov Cloud</h4>
-                <p>Облачная инфраструктура с гибкой настройкой, высокой доступностью и полной безопасностью данных.</p>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">🤖</div>
-                <h4>AI Solutions</h4>
-                <p>Решения на базе искусственного интеллекта: прогнозирование, компьютерное зрение и интеллектуальная аналитика.</p>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">⚙️</div>
-                <h4>Smart Industry</h4>
-                <p>Промышленная автоматизация, IoT-датчики и системы управления производством нового поколения.</p>
-            </div>
-        </div>
-
-        <h3 class="projects-title">Примеры реализованных проектов</h3>
-        <div class="projects">
-            <div class="project-item">
-                <strong>Цифровизация завода «Прогресс»</strong>
-                <span>Автоматизация 12 производственных линий, снижение издержек на 28%</span>
-            </div>
-            <div class="project-item">
-                <strong>AI-платформа для банка «Восток»</strong>
-                <span>Система кредитного скоринга с точностью предсказания 94%</span>
-            </div>
-            <div class="project-item">
-                <strong>Облако для сети клиник «Медиком»</strong>
-                <span>Единая инфраструктура для 40 филиалов по всей стране</span>
-            </div>
-            <div class="project-item">
-                <strong>Логистическая система для «ТрансЛайн»</strong>
-                <span>Оптимизация маршрутов и снижение затрат на топливо на 22%</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- КОНТАКТЫ -->
-<section class="contacts" id="contacts">
-    <div class="container">
-        <h2 class="section-title">Контактная информация</h2>
-        <p class="section-sub">Свяжитесь с нами любым удобным способом — мы ответим в течение одного рабочего дня.</p>
-
-        <div class="contacts-grid">
-            <div class="contact-info">
-                <p><span class="ico">📍</span> г. Москва, ул. Инновационная, д. 15, офис 501</p>
-                <p><span class="ico">📞</span> +7 (495) 123-45-67</p>
-                <p><span class="ico">✉️</span> info@aimatov-corp.ru</p>
-                <p><span class="ico">🕒</span> Пн–Пт: 9:00 – 18:00</p>
-                <p><span class="ico">🌐</span> www.aimatov-corp.ru</p>
-            </div>
-
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Спасибо! Ваше сообщение отправлено.'); this.reset();">
-                <div class="form-group">
-                    <label for="name">Имя</label>
-                    <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                <div class="news-item" onclick="openNews('news-5')">
+                    <div class="news-date">5 февраля 2024</div>
+                    <h4>Партнёрство с научными институтами</h4>
+                    <p>Подписаны соглашения о совместных исследованиях с тремя университетами в рамках проекта Biology.</p>
+                    <span class="news-link">Читать полностью</span>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+        </section>
+
+        <!-- ПРОДУКТЫ -->
+        <section class="screen" id="products">
+            <h2 class="page-title">Продукты и услуги</h2>
+            <p class="page-sub">Линейка решений Aimatov Corporation.</p>
+
+            <div class="product-list">
+                <div class="product-item">
+                    <div class="product-num">01</div>
+                    <div>
+                        <h4>Aimatov Platform</h4>
+                        <p>Корпоративная платформа для управления бизнес-процессами, документооборота и внутренней аналитики.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="message">Сообщение</label>
-                    <textarea id="message" name="message" placeholder="Ваше сообщение..." required></textarea>
+                <div class="product-item">
+                    <div class="product-num">02</div>
+                    <div>
+                        <h4>Aimatov Cloud</h4>
+                        <p>Облачная инфраструктура с гарантированным уровнем доступности и изолированной средой для корпоративных клиентов.</p>
+                    </div>
                 </div>
-                <button type="submit" class="btn">Отправить сообщение</button>
+                <div class="product-item">
+                    <div class="product-num">03</div>
+                    <div>
+                        <h4>AI Solutions</h4>
+                        <p>Решения на основе машинного обучения: прогнозирование, компьютерное зрение, обработка естественного языка.</p>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-num">04</div>
+                    <div>
+                        <h4>Climate-as-a-Service</h4>
+                        <p>Аренда климатических сценариев Climate Park для съёмочных групп, event-агентств и научных организаций.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КОНТАКТЫ -->
+        <section class="screen" id="contacts">
+            <h2 class="page-title">Контакты</h2>
+            <p class="page-sub">Ответ в течение одного рабочего дня.</p>
+
+            <div class="contacts-list">
+                <div class="contact-line">
+                    <span class="label">Адрес</span>
+                    <span class="value">Москва, ул. Инновационная, 15</span>
+                </div>
+                <div class="contact-line">
+                    <span class="label">Климат-парк</span>
+                    <span class="value">Кампус «Природа»</span>
+                </div>
+                <div class="contact-line">
+                    <span class="label">Телефон</span>
+                    <span class="value">+7 (495) 123-45-67</span>
+                </div>
+                <div class="contact-line">
+                    <span class="label">Email</span>
+                    <span class="value">aimatov.corporation@gmail.com</span>
+                </div>
+                <div class="contact-line">
+                    <span class="label">Часы работы</span>
+                    <span class="value">Пн–Пт · 9:00–18:00</span>
+                </div>
+            </div>
+
+            <div class="section-label">Форма обратной связи</div>
+            <form class="form" onsubmit="event.preventDefault(); alert('Сообщение отправлено.'); this.reset();">
+                <div class="field">
+                    <label>Имя</label>
+                    <input type="text" placeholder="Иван Иванов" required>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" placeholder="name@company.ru" required>
+                </div>
+                <div class="field">
+                    <label>Сообщение</label>
+                    <textarea placeholder="Опишите ваш запрос" required></textarea>
+                </div>
+                <button type="submit" class="btn">Отправить</button>
             </form>
-        </div>
-    </div>
-</section>
+        </section>
 
-<!-- КАРЬЕРА -->
-<section class="career" id="career">
-    <div class="container">
-        <h2 class="section-title">Вакансии</h2>
-        <p class="section-sub">Присоединяйтесь к команде профессионалов, которые создают технологии будущего.</p>
+        <!-- КАРЬЕРА -->
+        <section class="screen" id="career">
+            <h2 class="page-title">Вакансии</h2>
+            <p class="page-sub">Открытые позиции в компании.</p>
 
-        <div class="vacancies">
-            <div class="vacancy">
-                <div>
-                    <h4>Senior Frontend Developer</h4>
+            <div class="vacancy-list">
+                <div class="vacancy">
+                    <div class="vacancy-header">
+                        <h4>Инженер климатических систем</h4>
+                        <div class="vacancy-type">Полная занятость</div>
+                    </div>
+                    <p>Разработка, запуск и техническое обслуживание систем управляемого климата в парке.</p>
+                    <div class="vacancy-tags">
+                        <span class="vacancy-tag">HVAC</span>
+                        <span class="vacancy-tag">Автоматизация</span>
+                        <span class="vacancy-tag">Опыт 3+ года</span>
+                    </div>
+                    <button class="btn">Отправить резюме</button>
+                </div>
+
+                <div class="vacancy">
+                    <div class="vacancy-header">
+                        <h4>Биолог-исследователь</h4>
+                        <div class="vacancy-type">Полная занятость</div>
+                    </div>
+                    <p>Проведение экспериментов по влиянию климатических условий на биологические объекты.</p>
+                    <div class="vacancy-tags">
+                        <span class="vacancy-tag">Биология</span>
+                        <span class="vacancy-tag">R&D</span>
+                        <span class="vacancy-tag">Лаборатория</span>
+                    </div>
+                    <button class="btn">Отправить резюме</button>
+                </div>
+
+                <div class="vacancy">
+                    <div class="vacancy-header">
+                        <h4>Frontend Developer</h4>
+                        <div class="vacancy-type">Удалённо</div>
+                    </div>
                     <p>Разработка интерфейсов корпоративных платформ на React и TypeScript.</p>
                     <div class="vacancy-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">3+ года опыта</span>
-                        <span class="tag">Удалённо</span>
+                        <span class="vacancy-tag">React</span>
+                        <span class="vacancy-tag">TypeScript</span>
+                        <span class="vacancy-tag">3+ года</span>
                     </div>
+                    <button class="btn">Отправить резюме</button>
                 </div>
-                <a href="#" class="btn">Откликнуться</a>
-            </div>
 
-            <div class="vacancy">
-                <div>
-                    <h4>Data Scientist / ML Engineer</h4>
-                    <p>Разработка и внедрение моделей машинного обучения для промышленных задач.</p>
-                    <div class="vacancy-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">ML</span>
-                        <span class="tag">Москва / гибрид</span>
+                <div class="vacancy">
+                    <div class="vacancy-header">
+                        <h4>Data Scientist</h4>
+                        <div class="vacancy-type">Москва · гибрид</div>
                     </div>
+                    <p>Разработка моделей машинного обучения для климатических и промышленных задач.</p>
+                    <div class="vacancy-tags">
+                        <span class="vacancy-tag">Python</span>
+                        <span class="vacancy-tag">ML</span>
+                        <span class="vacancy-tag">TensorFlow</span>
+                    </div>
+                    <button class="btn">Отправить резюме</button>
                 </div>
-                <a href="#" class="btn">Откликнуться</a>
             </div>
+        </section>
 
-            <div class="vacancy">
-                <div>
-                    <h4>DevOps Engineer</h4>
-                    <p>Поддержка и развитие облачной инфраструктуры, CI/CD, мониторинг.</p>
-                    <div class="vacancy-tags">
-                        <span class="tag">Kubernetes</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">AWS</span>
-                        <span class="tag">Удалённо</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">Откликнуться</a>
-            </div>
+    </main>
+</div>
 
-            <div class="vacancy">
-                <div>
-                    <h4>Менеджер по продажам B2B</h4>
-                    <p>Работа с корпоративными клиентами, развитие долгосрочных партнёрств.</p>
-                    <div class="vacancy-tags">
-                        <span class="tag">B2B</span>
-                        <span class="tag">IT-продажи</span>
-                        <span class="tag">2+ года опыта</span>
-                        <span class="tag">Москва</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">Откликнуться</a>
-            </div>
+<!-- DRAWER -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+    <div class="drawer-head">
+        <div class="brand">
+            <div class="brand-mark">A</div>
+            <div>Aimatov Corporation</div>
         </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Закрыть">✕</button>
     </div>
-</section>
 
-<!-- ФУТЕР -->
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-about">
-                <div class="footer-logo">
-                    <div class="logo-mark">A</div>
-                    Aimatov Corporation
-                </div>
-                <p>Ведущая компания в области инновационных решений для бизнеса. Создаём технологии будущего с 2008 года.</p>
-                <div class="socials">
-                    <a href="#" title="Facebook">Fb</a>
-                    <a href="#" title="LinkedIn">In</a>
-                    <a href="#" title="Instagram">Ig</a>
-                </div>
-            </div>
+    <div class="drawer-label">Разделы</div>
+    <ul class="drawer-nav" id="drawerNav">
+        <li><a data-screen="home" class="active"><span class="num">01</span> Главная</a></li>
+        <li><a data-screen="about"><span class="num">02</span> О компании</a></li>
+        <li><a data-screen="climate"><span class="num">03</span> Climate & Biology</a></li>
+        <li><a data-screen="news"><span class="num">04</span> Новости</a></li>
+        <li><a data-screen="products"><span class="num">05</span> Продукты и услуги</a></li>
+        <li><a data-screen="contacts"><span class="num">06</span> Контакты</a></li>
+        <li><a data-screen="career"><span class="num">07</span> Карьера</a></li>
+    </ul>
 
-            <div class="footer-col">
-                <h5>Навигация</h5>
-                <ul>
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#products">Продукты/Услуги</a></li>
-                    <li><a href="#news">Новости и события</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
-                    <li><a href="#career">Карьера</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h5>Компания</h5>
-                <ul>
-                    <li><a href="#">Политика конфиденциальности</a></li>
-                    <li><a href="#">Условия использования</a></li>
-                    <li><a href="#">Пресс-центр</a></li>
-                    <li><a href="#">Партнёрам</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <span>© 2024 Aimatov Corporation. Все права защищены.</span>
-            <div>
-                <a href="#">Политика конфиденциальности</a>
-                <a href="#">Условия использования</a>
-            </div>
-        </div>
+    <div class="drawer-foot">
+        © 2024 Aimatov Corporation
     </div>
-</footer>
+</aside>
+
+<!-- MODAL для новостей -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-head">
+            <span class="label">Новость</span>
+            <button class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    /* ===== Данные новостей ===== */
+    const NEWS = {
+        'news-1': {
+            date: '20 июня 2024',
+            title: 'Открытие Aimatov Climate Park',
+            content: `
+                <p>Введён в эксплуатацию первый в регионе парк управляемого климата площадью 2 гектара. Проект реализован за 18 месяцев -- от проектирования до запуска первой очереди.</p>
+                <div class="quote">«Climate Park -- это не аттракцион. Это инженерная платформа, где климат становится управляемым параметром.»</div>
+                <p>Парк оснащён <strong>полноспектральными LED-системами</strong> искусственного освещения, управляемыми системами осадков, ветра и тумана. Все сценарии -- от пустынного до штормового -- переключаются за минуты.</p>
+                <p>На территории действует замкнутый цикл водоснабжения и гибридная энергетика: солнечные панели на крыше плюс резервное подключение к городской сети.</p>
+                <p>Первые клиенты -- съёмочные группы, event-агентства и научные организации. Коммерческий доступ открыт через сервис Climate-as-a-Service.</p>
+            `
+        },
+        'news-2': {
+            date: '15 мая 2024',
+            title: 'Релиз Aimatov Cloud 2.0',
+            content: `
+                <p>Представлена вторая версия облачной платформы Aimatov Cloud. Основные изменения -- переход на контейнерную архитектуру и расширенные инструменты мониторинга.</p>
+                <div class="quote">«Cloud 2.0 -- это ответ на запросы корпоративных клиентов: больше изоляции, больше контроля, меньше ручной работы.»</div>
+                <p>Ключевые возможности:</p>
+                <p><strong>Контейнеризация.</strong> Поддержка Docker и Kubernetes из коробки. Автоматическое масштабирование под нагрузку.</p>
+                <p><strong>Встроенный мониторинг.</strong> Единая панель со метриками по всем сервисам, алерты, логи в реальном времени.</p>
+                <p><strong>Расширенная система ролей.</strong> Гранулярные права доступа для команд любого размера, аудит действий.</p>
+                <p>Миграция с версии 1.x возможна без простоя. Для действующих клиентов обновление бесплатное.</p>
+            `
+        },
+        'news-3': {
+            date: '2 апреля 2024',
+            title: 'Премия «Инноватор года»',
+            content: `
+                <p>Компания Aimatov Corporation отмечена национальной премией «Инноватор года» за вклад в развитие промышленной автоматизации и прикладного искусственного интеллекта.</p>
+                <div class="quote">«Эта награда -- результат работы всей команды. Мы продолжим развивать технологии, которые реально меняют производство.»</div>
+                <p>Жюри отметило два ключевых проекта:</p>
+                <p><strong>Цифровизация завода «Прогресс».</strong> Автоматизация 12 производственных линий с интеграцией ML-моделей для прогнозирования простоев.</p>
+                <p><strong>AI-платформа для банка «Восток».</strong> Система кредитного скоринга с точностью предсказания 94%.</p>
+                <p>Всего в 2024 году компания реализовала более 120 проектов в четырёх странах.</p>
+            `
+        },
+        'news-4': {
+            date: '18 марта 2024',
+            title: 'Запуск направления Climate-as-a-Service',
+            content: `
+                <p>Открыт коммерческий доступ к аренде климатических сценариев Climate Park для внешних клиентов. Услуга доступна как для разовых проектов, так и по подписке.</p>
+                <div class="quote">«Съёмка в пустыне больше не требует поездки в пустыню. Климат стал сервисом.»</div>
+                <p>Что входит в услугу:</p>
+                <p><strong>Для съёмочных групп.</strong> Сценарии для кино, рекламы и видеопроизводства. Возможность комбинировать климатические режимы в рамках одного съёмочного дня.</p>
+                <p><strong>Для event-агентств.</strong> Тематические мероприятия с управляемой погодой -- от тропической вечеринки до «шторма» в рамках презентации.</p>
+                <p><strong>Для научных организаций.</strong> Тестирование оборудования и материалов в контролируемых климатических условиях.</p>
+                <p>Заявки принимаются через форму обратной связи на сайте.</p>
+            `
+        },
+        'news-5': {
+            date: '5 февраля 2024',
+            title: 'Партнёрство с научными институтами',
+            content: `
+                <p>Подписаны соглашения о совместных исследованиях с тремя ведущими университетами страны в рамках проекта Aimatov Biology.</p>
+                <div class="quote">«Мы строим не просто лабораторию. Мы создаём инфраструктуру для биологических исследований нового уровня.»</div>
+                <p>Направления сотрудничества:</p>
+                <p><strong>Исследование устойчивости растений.</strong> Долгосрочные эксперименты по адаптации агрокультур к экстремальным климатическим условиям.</p>
+                <p><strong>Микробиология.</strong> Изучение поведения микроорганизмов при резких перепадах температуры и влажности.</p>
+                <p><strong>Материаловедение.</strong> Тестирование строительных и промышленных материалов в управляемой среде.</p>
+                <p>Первые совместные программы стартуют в мае 2024 года. Студенты старших курсов получат доступ к стажировкам на базе Biology.</p>
+            `
+        }
+    };
+
+    /* ===== Навигация между экранами ===== */
+    const screens = document.querySelectorAll('.screen');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+    const menuBtn = document.getElementById('menuBtn');
+    const drawerClose = document.getElementById('drawerClose');
+    const drawerNavLinks = document.querySelectorAll('#drawerNav a');
+
+    function goTo(id) {
+        screens.forEach(s => s.classList.remove('active'));
+        const target = document.getElementById(id);
+        if (target) { target.classList.add('active'); target.scrollTop = 0; }
+        drawerNavLinks.forEach(l => l.classList.toggle('active', l.dataset.screen === id));
+        closeDrawer();
+    }
+
+    function openDrawer() {
+        drawer.classList.add('open');
+        overlay.classList.add('show');
+        menuBtn.classList.add('active');
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove('open');
+        overlay.classList.remove('show');
+        menuBtn.classList.remove('active');
+    }
+
+    menuBtn.addEventListener('click', () => {
+        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+    });
+    drawerClose.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    drawerNavLinks.forEach(l => l.addEventListener('click', () => goTo(l.dataset.screen)));
+
+    /* ===== Модальное окно новостей ===== */
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalBody = document.getElementById('modalBody');
+    const modalClose = document.getElementById('modalClose');
+
+    function openNews(id) {
+        const item = NEWS[id];
+        if (!item) return;
+        modalBody.innerHTML = `
+            <div class="modal-date">${item.date}</div>
+            <h2>${item.title}</h2>
+            ${item.content}
+        `;
+        modalOverlay.classList.add('show');
+        modalBody.scrollTop = 0;
+    }
+
+    function closeNews() {
+        modalOverlay.classList.remove('show');
+    }
+
+    modalClose.addEventListener('click', closeNews);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeNews();
+    });
+
+    /* ===== Свайпы для drawer ===== */
+    let sx = 0;
+    document.addEventListener('touchstart', e => { sx = e.changedTouches[0].screenX; }, { passive: true });
+    document.addEventListener('touchend', e => {
+        const ex = e.changedTouches[0].screenX;
+        if (sx - ex > 80 && sx > window.innerWidth - 50) openDrawer();
+        if (ex - sx > 80 && drawer.classList.contains('open')) closeDrawer();
+    }, { passive: true });
+
+    /* ===== ESC -- закрыть всё ===== */
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            closeDrawer();
+            closeNews();
+        }
+    });
+</script>
 
 </body>
 </html>
