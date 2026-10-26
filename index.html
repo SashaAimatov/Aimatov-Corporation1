@@ -1,1094 +1,402 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Aimatov Corporation</title>
+<meta name="generator" content="Aimatov-Corp-Secured-Node-v4.8.2 [Qm9tb2dpIG1uZQ==]">
+<title>Aimatov Corporation // Official Government & Enterprise Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     :root {
-        --navy: #123A5E;
-        --navy-2: #1B4B77;
-        --blue: #2A6DB0;
-        --blue-soft: #EAF2FA;
-        --green: #2F6B45;
-        --green-soft: #EAF4EE;
-        --line: #E2E8F0;
-        --line-2: #EEF2F7;
-        --bg: #F6F8FB;
+        --navy: #0A192F;
+        --navy-dark: #040D1A;
+        --navy-light: #172A45;
+        --gold: #C5A059;
+        --gold-light: #DFBD7A;
+        --bg: #F4F6F9;
         --card: #FFFFFF;
-        --text: #172033;
-        --text-2: #48566B;
-        --text-3: #7A8799;
-        --radius: 14px;
-        --radius-sm: 10px;
+        --text: #1E293B;
+        --text-2: #475569;
+        --text-3: #94A3B8;
+        --line: #CBD5E1;
+        --line-soft: #E2E8F0;
+        --radius: 12px;
+        --radius-sm: 8px;
+        --climate-primary: var(--navy);
+        --climate-soft: #E2E8F0;
     }
 
-    html, body {
-        height: 100%;
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
+    /* Secret Alien Matrix Mode */
+    body.alien-mode {
+        --navy: #022C22 !important;
+        --navy-dark: #011C14 !important;
+        --gold: #10B981 !important;
+        --gold-light: #34D399 !important;
+        --bg: #064E3B !important;
+        --card: #022C22 !important;
+        --text: #A7F3D0 !important;
+        --text-2: #6EE7B7 !important;
+        --text-3: #059669 !important;
     }
+    body.alien-mode .app { background: #022C22; border-color: #10B981; }
+    body.alien-mode .screen { background: #064E3B; }
+    body.alien-mode .prose, body.alien-mode .director, body.alien-mode .stat, body.alien-mode .climate-section, body.alien-mode .news-item, body.alien-mode .product-item, body.alien-mode .contacts-list, body.alien-mode .form, body.alien-mode .vacancy {
+        background: #022C22 !important; border-color: #059669 !important; color: #A7F3D0 !important;
+    }
+
+    /* Red Alert Mode */
+    body.red-alert-mode {
+        --navy: #450A0A !important;
+        --navy-dark: #260505 !important;
+        --gold: #F87171 !important;
+        --gold-light: #FCA5A5 !important;
+        --bg: #7F1D1D !important;
+        --card: #450A0A !important;
+        --text: #FEE2E2 !important;
+        --text-2: #FECACA !important;
+        --text-3: #EF4444 !important;
+    }
+    body.red-alert-mode .app { border-color: #EF4444; }
+
+    /* Night Vision / Chopper Mode */
+    body.chopper-mode { filter: hue-rotate(90deg) contrast(1.3); }
+    body.chopper-mode::after {
+        content: " "; display: block; position: fixed; inset: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 99999; background-size: 100% 3px, 6px 100%; pointer-events: none;
+    }
+
+    body.glitch-mode { animation: glitchAnim 0.2s infinite; }
+    @keyframes glitchAnim { 0% { transform: translate(0,0); } 50% { transform: translate(-3px, 2px); filter: invert(0.8); } 100% { transform: translate(3px, -1px); } }
+
+    html, body { height: 100%; overflow: hidden; position: fixed; width: 100%; }
 
     body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        font-size: 15px;
-        color: var(--text);
-        background: var(--bg);
-        line-height: 1.55;
-        -webkit-font-smoothing: antialiased;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-size: 15px; color: var(--text); background: var(--bg);
+        line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4 { font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+    h1, h2, h3, h4, .page-title, .home-block h1 { font-family: 'Playfair Display', Georgia, serif; }
 
-    /* ===== SHELL ===== */
     .app {
-        height: 100vh;
-        height: 100dvh;
-        display: flex;
-        flex-direction: column;
-        max-width: 640px;
-        margin: 0 auto;
-        background: var(--card);
-        position: relative;
+        height: 100vh; height: 100dvh; display: flex; flex-direction: column;
+        max-width: 640px; margin: 0 auto; background: var(--card);
+        position: relative; box-shadow: 0 0 40px rgba(10, 25, 47, 0.08);
     }
 
-    /* ===== HEADER ===== */
     .header {
-        background: var(--navy);
-        color: #fff;
-        padding: 0 18px;
-        height: 58px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-shrink: 0;
-        z-index: 10;
+        background: var(--navy); color: #fff; padding: 0 20px; height: 64px;
+        display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        flex-shrink: 0; z-index: 10; border-bottom: 2px solid var(--gold);
     }
-
-    .header-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-        flex: 1;
-    }
-
+    .header-left { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1; }
     .brand-mark {
-        width: 34px;
-        height: 34px;
-        background: #fff;
-        color: var(--navy);
-        border-radius: 9px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        font-weight: 700;
-        flex-shrink: 0;
+        width: 38px; height: 38px; background: var(--gold); color: var(--navy-dark);
+        border-radius: 6px; display: flex; align-items: center; justify-content: center;
+        font-size: 1.1rem; font-weight: 700; flex-shrink: 0; font-family: 'Playfair Display', serif;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2); cursor: pointer;
     }
-
-    .brand-name {
-        font-size: 0.94rem;
-        font-weight: 600;
-        letter-spacing: 0.01em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .brand-name small {
-        display: block;
-        font-size: 0.68rem;
-        font-weight: 400;
-        color: #93B0CE;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-top: 1px;
-    }
+    .brand-name { font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Playfair Display', serif; cursor: pointer; }
+    .brand-name small { display: block; font-size: 0.65rem; font-weight: 500; color: var(--gold-light); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2px; font-family: 'Inter', sans-serif; }
 
     .menu-btn {
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.08);
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 4px;
-        flex-shrink: 0;
-        transition: background 0.2s;
+        width: 42px; height: 42px; background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 8px; cursor: pointer;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0;
     }
-
-    .menu-btn:active { background: rgba(255, 255, 255, 0.18); }
-
-    .menu-btn span {
-        width: 16px;
-        height: 1.6px;
-        background: #fff;
-        border-radius: 1px;
-        transition: transform 0.25s;
-    }
-
-    .menu-btn.active span:nth-child(1) { transform: translateY(5.6px) rotate(45deg); }
+    .menu-btn span { width: 18px; height: 2px; background: var(--gold-light); border-radius: 1px; transition: transform 0.25s, opacity 0.25s; }
+    .menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .menu-btn.active span:nth-child(2) { opacity: 0; }
-    .menu-btn.active span:nth-child(3) { transform: translateY(-5.6px) rotate(-45deg); }
+    .menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* ===== SCREENS ===== */
     .screens { flex: 1; position: relative; overflow: hidden; }
-
     .screen {
-        position: absolute;
-        inset: 0;
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding: 22px 20px 80px;
-        background: var(--bg);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.22s ease, visibility 0.22s;
-        -webkit-overflow-scrolling: touch;
+        position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden;
+        padding: 24px 20px 80px; background: var(--bg); opacity: 0; visibility: hidden;
+        transition: opacity 0.25s ease, visibility 0.25s; -webkit-overflow-scrolling: touch;
     }
-
     .screen.active { opacity: 1; visibility: visible; }
-
     .screen::-webkit-scrollbar { width: 4px; }
-    .screen::-webkit-scrollbar-thumb { background: #C8D2E0; border-radius: 2px; }
+    .screen::-webkit-scrollbar-thumb { background: var(--line); border-radius: 2px; }
 
-    /* ===== HEADINGS ===== */
-    .page-title { font-size: 1.4rem; color: var(--text); margin-bottom: 6px; }
-
-    .page-sub { color: var(--text-2); font-size: 0.92rem; margin-bottom: 22px; max-width: 500px; }
+    .page-title { font-size: 1.6rem; color: var(--navy); margin-bottom: 6px; font-weight: 700; }
+    .page-sub { color: var(--text-2); font-size: 0.92rem; margin-bottom: 24px; }
 
     .section-label {
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-3);
-        margin: 26px 0 10px;
+        font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+        color: var(--text-3); margin: 28px 0 12px; border-left: 3px solid var(--gold); padding-left: 8px;
     }
 
-    /* ===== BUTTONS ===== */
     .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: var(--navy);
-        color: #fff;
-        padding: 12px 22px;
-        border: none;
-        border-radius: var(--radius-sm);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: background 0.18s, transform 0.12s;
-        font-family: inherit;
-        text-align: center;
-        width: 100%;
-        letter-spacing: 0.01em;
+        display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+        background: var(--navy); color: #fff; padding: 13px 22px; border: 1px solid var(--navy);
+        border-radius: var(--radius-sm); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+        cursor: pointer; transition: all 0.2s; font-family: inherit; text-align: center; width: 100%;
     }
+    .btn:active { background: var(--navy-light); transform: scale(0.99); }
+    .btn-ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
 
-    .btn:active { background: var(--navy-2); transform: scale(0.99); }
-
-    .btn-ghost {
-        background: #fff;
-        color: var(--navy);
-        border: 1px solid var(--line);
-    }
-
-    .btn-ghost:active { background: var(--blue-soft); }
-
-    /* ===== HOME ===== */
     .home-block {
-        background: linear-gradient(155deg, #123A5E 0%, #1B4B77 100%);
-        color: #fff;
-        padding: 34px 26px 30px;
-        border-radius: var(--radius);
-        margin-bottom: 18px;
-        position: relative;
-        overflow: hidden;
+        background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+        color: #fff; padding: 38px 26px 32px; border-radius: var(--radius); margin-bottom: 20px;
+        position: relative; overflow: hidden; border-bottom: 3px solid var(--gold);
     }
+    .home-eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 14px; }
+    .home-block h1 { font-size: 1.7rem; font-weight: 700; margin-bottom: 14px; line-height: 1.25; }
+    .home-block p { font-size: 0.95rem; color: #CBD5E1; margin-bottom: 24px; line-height: 1.6; }
+    .home-buttons { display: flex; flex-direction: column; gap: 10px; }
+    .home-buttons .btn { background: var(--gold); color: var(--navy-dark); border-color: var(--gold); font-weight: 700; }
+    .home-buttons .btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
 
-    .home-block::after {
-        content: "";
-        position: absolute;
-        width: 220px; height: 220px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.04);
-        top: -80px; right: -70px;
-    }
-
-    .home-eyebrow {
-        display: inline-block;
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: #9EB8D2;
-        margin-bottom: 16px;
-        position: relative;
-    }
-
-    .home-block h1 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 14px;
-        line-height: 1.3;
-        letter-spacing: -0.015em;
-        position: relative;
-    }
-
-    .home-block p {
-        font-size: 0.93rem;
-        color: #C5D4E4;
-        margin-bottom: 22px;
-        line-height: 1.6;
-        position: relative;
-    }
-
-    .home-buttons { display: flex; flex-direction: column; gap: 9px; position: relative; }
-
-    .home-buttons .btn { background: #fff; color: var(--navy); }
-    .home-buttons .btn:active { background: #E3ECF6; }
-
-    .home-buttons .btn.ghost {
-        background: transparent;
-        color: #fff;
-        border: 1px solid rgba(255, 255, 255, 0.28);
-    }
-    .home-buttons .btn.ghost:active { background: rgba(255, 255, 255, 0.1); }
-
-    /* ===== DIRECTOR ===== */
     .director {
-        background: #fff;
-        border-radius: var(--radius);
-        padding: 22px;
-        border: 1px solid var(--line);
-        display: flex;
-        gap: 18px;
-        align-items: flex-start;
-        margin-bottom: 18px;
+        background: #fff; border-radius: var(--radius); padding: 22px;
+        border: 1px solid var(--line-soft); box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        display: flex; gap: 18px; align-items: flex-start; margin-bottom: 20px;
     }
-
     .director-avatar {
-        width: 62px; height: 62px;
-        background: linear-gradient(145deg, #2A6DB0, #123A5E);
-        color: #fff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        font-weight: 600;
-        flex-shrink: 0;
-        letter-spacing: -0.02em;
+        width: 64px; height: 64px; background: var(--navy); color: var(--gold);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 1.25rem; font-weight: 700; flex-shrink: 0; font-family: 'Playfair Display', serif;
+        border: 2px solid var(--gold); cursor: pointer;
     }
+    .director-info h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 2px; }
+    .director-role { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .director-quote { font-size: 0.88rem; color: var(--text-2); font-style: italic; padding-left: 12px; border-left: 2px solid var(--gold); line-height: 1.5; }
 
-    .director-info h3 { font-size: 1rem; color: var(--text); margin-bottom: 3px; }
-
-    .director-role {
-        font-size: 0.74rem;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--blue);
-        margin-bottom: 10px;
-    }
-
-    .director-quote {
-        font-size: 0.86rem;
-        color: var(--text-2);
-        font-style: italic;
-        padding-left: 12px;
-        border-left: 2px solid var(--blue-soft);
-        line-height: 1.5;
-    }
-
-    /* ===== STATS ===== */
-    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .stat {
-        background: #fff;
-        border-radius: var(--radius-sm);
-        padding: 18px 16px;
-        border: 1px solid var(--line);
+        background: #fff; border-radius: var(--radius-sm); padding: 18px 16px;
+        border: 1px solid var(--line-soft); box-shadow: 0 2px 6px rgba(0,0,0,0.02); cursor: pointer;
     }
+    .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--navy); font-family: 'Playfair Display', serif; }
+    .stat-label { font-size: 0.78rem; color: var(--text-3); font-weight: 600; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-    .stat-value {
-        font-size: 1.45rem;
-        font-weight: 700;
-        color: var(--navy);
-        letter-spacing: -0.02em;
-    }
-
-    .stat-label { font-size: 0.76rem; color: var(--text-3); font-weight: 500; margin-top: 3px; }
-
-    /* ===== ABOUT ===== */
     .prose {
-        background: #fff;
-        border-radius: var(--radius);
-        padding: 22px;
-        border: 1px solid var(--line);
+        background: #fff; border-radius: var(--radius); padding: 24px;
+        border: 1px solid var(--line-soft); box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
-
-    .prose p {
-        font-size: 0.92rem;
-        color: var(--text-2);
-        margin-bottom: 12px;
-        line-height: 1.65;
-    }
-
+    .prose p { font-size: 0.94rem; color: var(--text-2); margin-bottom: 14px; line-height: 1.7; }
     .prose p:last-child { margin-bottom: 0; }
-    .prose strong { color: var(--text); font-weight: 600; }
+    .prose strong { color: var(--navy); font-weight: 600; }
 
-    .team-list { display: flex; flex-direction: column; gap: 8px; }
+    .team-list { display: flex; flex-direction: column; gap: 10px; }
+    .member { background: #fff; padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--line-soft); display: flex; align-items: center; gap: 14px; }
+    .member-avatar { width: 44px; height: 44px; background: var(--navy); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; flex-shrink: 0; font-family: 'Playfair Display', serif; cursor: pointer; }
+    .member-info h4 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .member-info span { font-size: 0.8rem; color: var(--text-3); }
 
-    .member {
-        background: #fff;
-        padding: 14px 16px;
-        border-radius: var(--radius-sm);
-        border: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        transition: border-color 0.2s;
-    }
+    .dir-list { display: flex; flex-direction: column; gap: 10px; }
+    .dir-row { background: #fff; padding: 16px 18px; border-radius: var(--radius-sm); border: 1px solid var(--line-soft); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .dir-row-info strong { display: block; font-size: 0.92rem; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .dir-row-info span { font-size: 0.8rem; color: var(--text-3); }
+    .dir-share { font-size: 0.78rem; font-weight: 700; color: var(--navy); background: rgba(197, 160, 89, 0.15); padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(197, 160, 89, 0.3); white-space: nowrap; cursor: pointer; }
 
-    .member:hover { border-color: #C7D4E5; }
-
-    .member-avatar {
-        width: 42px; height: 42px;
-        background: linear-gradient(145deg, #2A6DB0, #123A5E);
-        color: #fff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.85rem;
-        font-weight: 600;
-        flex-shrink: 0;
-    }
-
-    .member-info h4 { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 1px; }
-    .member-info span { font-size: 0.78rem; color: var(--text-3); }
-
-    .dir-list { display: flex; flex-direction: column; gap: 8px; }
-
-    .dir-row {
-        background: #fff;
-        padding: 15px 18px;
-        border-radius: var(--radius-sm);
-        border: 1px solid var(--line);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .dir-row-info strong {
-        display: block;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--text);
-        margin-bottom: 2px;
-    }
-
-    .dir-row-info span { font-size: 0.78rem; color: var(--text-3); }
-
-    .dir-share {
-        font-size: 0.76rem;
-        font-weight: 700;
-        color: var(--blue);
-        background: var(--blue-soft);
-        padding: 4px 10px;
-        border-radius: 20px;
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-
-    /* ===== CLIMATE ===== */
     .climate-header {
-        background: linear-gradient(155deg, #123A5E 0%, #1B4B77 100%);
-        color: #fff;
-        padding: 28px 24px;
-        border-radius: var(--radius);
-        margin-bottom: 16px;
-        position: relative;
-        overflow: hidden;
+        background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+        color: #fff; padding: 30px 24px; border-radius: var(--radius); margin-bottom: 18px;
+        border-bottom: 3px solid var(--gold); transition: background 0.4s ease;
     }
+    .climate-header .tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; display: block; cursor: pointer; }
+    .climate-header h1 { font-size: 1.45rem; font-weight: 700; margin-bottom: 8px; }
+    .climate-header p { font-size: 0.9rem; color: #CBD5E1; line-height: 1.6; }
 
-    .climate-header::after {
-        content: "";
-        position: absolute;
-        width: 200px; height: 200px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.04);
-        top: -70px; right: -60px;
+    .climate-selector { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 18px; }
+    .climate-sel-btn {
+        padding: 14px; background: #fff; border: 2px solid var(--line-soft); border-radius: var(--radius-sm);
+        font-weight: 600; font-size: 0.88rem; color: var(--text-2); cursor: pointer; transition: all 0.2s; text-align: center;
     }
+    .climate-sel-btn.active { background: var(--climate-primary); color: #fff; border-color: var(--climate-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
-    .climate-header .tag {
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #9EB8D2;
-        margin-bottom: 12px;
-        display: block;
-        position: relative;
-    }
+    .climate-section { background: #fff; border-radius: var(--radius); border: 1px solid var(--line-soft); margin-bottom: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .climate-section-head { padding: 18px 20px; border-bottom: 1px solid var(--line-soft); display: flex; align-items: center; gap: 14px; background: #FAFAFB; }
+    .climate-section-head .marker { width: 38px; height: 38px; background: var(--climate-soft); color: var(--climate-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; cursor: pointer; }
+    .climate-section-head h3 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .climate-section-head .meta { font-size: 0.78rem; color: var(--text-3); font-weight: 500; cursor: pointer; }
+    .climate-section-body { padding: 22px; }
+    .climate-section-body p { font-size: 0.92rem; color: var(--text-2); line-height: 1.7; margin-bottom: 14px; }
 
-    .climate-header h1 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        position: relative;
-    }
-
-    .climate-header p {
-        font-size: 0.88rem;
-        color: #C5D4E4;
-        line-height: 1.55;
-        position: relative;
-    }
-
-    .climate-section {
-        background: #fff;
-        border-radius: var(--radius);
-        border: 1px solid var(--line);
-        margin-bottom: 14px;
-        overflow: hidden;
-    }
-
-    .climate-section-head {
-        padding: 18px 20px;
-        border-bottom: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        background: #FBFCFE;
-    }
-
-    .climate-section-head .marker {
-        width: 36px; height: 36px;
-        background: var(--blue-soft);
-        color: var(--blue);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.82rem;
-        font-weight: 700;
-        flex-shrink: 0;
-    }
-
-    .climate-section.bio .climate-section-head .marker {
-        background: var(--green-soft);
-        color: var(--green);
-    }
-
-    .climate-section-head h3 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text);
-        margin-bottom: 2px;
-    }
-
-    .climate-section-head .meta { font-size: 0.76rem; color: var(--text-3); }
-
-    .climate-section-body { padding: 20px; }
-
-    .climate-section-body p {
-        font-size: 0.9rem;
-        color: var(--text-2);
-        line-height: 1.65;
-        margin-bottom: 14px;
-    }
-
-    .climate-section-body p:last-child { margin-bottom: 0; }
-
-    .subhead {
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-3);
-        margin: 18px 0 10px;
-    }
-
-    .subhead:first-child { margin-top: 0; }
-
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .chip {
-        display: inline-block;
-        padding: 5px 12px;
-        font-size: 0.78rem;
-        font-weight: 500;
-        border-radius: 20px;
-        background: var(--blue-soft);
-        color: var(--blue);
-    }
-
-    .climate-section.bio .chip { background: var(--green-soft); color: var(--green); }
+    .subhead { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin: 20px 0 10px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { display: inline-block; padding: 6px 14px; font-size: 0.8rem; font-weight: 600; border-radius: 20px; background: var(--climate-soft); color: var(--climate-primary); cursor: pointer; }
 
     .feature-list { list-style: none; }
+    .feature-list li { padding: 10px 0 10px 24px; font-size: 0.9rem; color: var(--text-2); position: relative; line-height: 1.6; border-bottom: 1px solid var(--line-soft); }
+    .feature-list li::before { content: ""; position: absolute; left: 4px; top: 18px; width: 6px; height: 6px; border-radius: 50%; background: var(--climate-primary); }
 
-    .feature-list li {
-        padding: 9px 0 9px 24px;
-        font-size: 0.88rem;
-        color: var(--text-2);
-        position: relative;
-        line-height: 1.55;
-        border-bottom: 1px solid var(--line-2);
-    }
+    .motto { background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%); color: #fff; padding: 28px 24px; border-radius: var(--radius); text-align: center; margin-top: 10px; border-top: 3px solid var(--gold); }
+    .motto h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+    .motto p { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); }
 
-    .feature-list li:last-child { border-bottom: none; }
+    .news-list { display: flex; flex-direction: column; gap: 12px; }
+    .news-item { background: #fff; border-radius: var(--radius); padding: 20px; border: 1px solid var(--line-soft); box-shadow: 0 4px 12px rgba(0,0,0,0.03); cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+    .news-date { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+    .news-item h4 { font-size: 1.02rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .news-item p { font-size: 0.88rem; color: var(--text-2); line-height: 1.6; margin-bottom: 12px; }
+    .news-link { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+    .news-link::after { content: "→"; color: var(--gold); }
 
-    .feature-list li::before {
-        content: "";
-        position: absolute;
-        left: 4px;
-        top: 16px;
-        width: 6px; height: 6px;
-        border-radius: 50%;
-        background: var(--blue);
-    }
+    .product-list { display: flex; flex-direction: column; gap: 12px; }
+    .product-item { background: #fff; border-radius: var(--radius); padding: 20px; border: 1px solid var(--line-soft); box-shadow: 0 4px 12px rgba(0,0,0,0.03); display: flex; gap: 16px; align-items: flex-start; }
+    .product-num { width: 36px; height: 36px; background: rgba(197, 160, 89, 0.15); color: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 700; flex-shrink: 0; border: 1px solid rgba(197, 160, 89, 0.3); }
+    .product-item h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; cursor: pointer; }
+    .product-item p { font-size: 0.88rem; color: var(--text-2); line-height: 1.6; }
 
-    .climate-section.bio .feature-list li::before { background: var(--green); }
+    .contacts-list { background: #fff; border-radius: var(--radius); border: 1px solid var(--line-soft); overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .contact-line { padding: 16px 20px; display: flex; justify-content: space-between; gap: 12px; font-size: 0.92rem; border-bottom: 1px solid var(--line-soft); }
+    .contact-line .label { color: var(--text-3); font-weight: 600; flex-shrink: 0; min-width: 100px; font-size: 0.84rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .contact-line .value { color: var(--navy); font-weight: 600; text-align: right; font-size: 0.9rem; word-break: break-all; cursor: pointer; }
 
-    .motto {
-        background: linear-gradient(155deg, #123A5E 0%, #1B4B77 100%);
-        color: #fff;
-        padding: 26px 24px;
-        border-radius: var(--radius);
-        text-align: center;
-        margin-top: 4px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .motto::after {
-        content: "";
-        position: absolute;
-        width: 180px; height: 180px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.04);
-        bottom: -80px; left: -60px;
-    }
-
-    .motto h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; position: relative; }
-
-    .motto p {
-        font-size: 0.72rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: #9EB8D2;
-        position: relative;
-    }
-
-    /* ===== NEWS ===== */
-    .news-list { display: flex; flex-direction: column; gap: 10px; }
-
-    .news-item {
-        background: #fff;
-        border-radius: var(--radius);
-        padding: 18px 20px;
-        border: 1px solid var(--line);
-        transition: border-color 0.2s, transform 0.15s;
-        cursor: pointer;
-    }
-
-    .news-item:hover,
-    .news-item:active { border-color: #C7D4E5; transform: translateY(-1px); }
-
-    .news-date {
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        color: var(--text-3);
-        text-transform: uppercase;
-        margin-bottom: 7px;
-    }
-
-    .news-item h4 {
-        font-size: 0.98rem;
-        font-weight: 600;
-        color: var(--text);
-        margin-bottom: 8px;
-    }
-
-    .news-item p {
-        font-size: 0.87rem;
-        color: var(--text-2);
-        line-height: 1.6;
-        margin-bottom: 12px;
-    }
-
-    .news-link {
-        font-size: 0.84rem;
-        font-weight: 600;
-        color: var(--blue);
-        text-decoration: none;
-    }
-
-    .news-link::after { content: " →"; }
-
-    /* ===== MODAL ===== */
-    .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(15, 30, 50, 0.55);
-        z-index: 200;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.25s, visibility 0.25s;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-    }
-
-    .modal-overlay.show { opacity: 1; visibility: visible; }
-
-    .modal {
-        background: #fff;
-        width: 100%;
-        max-width: 640px;
-        max-height: 92vh;
-        max-height: 92dvh;
-        border-radius: 20px 20px 0 0;
-        transform: translateY(30px);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
-
-    .modal-overlay.show .modal { transform: translateY(0); }
-
-    .modal-head {
-        padding: 18px 20px;
-        border-bottom: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-shrink: 0;
-        background: #fff;
-    }
-
-    .modal-head .label {
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--text-3);
-    }
-
-    .modal-close {
-        width: 36px;
-        height: 36px;
-        background: var(--bg);
-        border: none;
-        border-radius: 9px;
-        color: var(--text-2);
-        cursor: pointer;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: inherit;
-        flex-shrink: 0;
-        transition: background 0.15s;
-    }
-
-    .modal-close:active { background: var(--blue-soft); }
-
-    .modal-body {
-        padding: 24px 22px 32px;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .modal-body::-webkit-scrollbar { width: 4px; }
-    .modal-body::-webkit-scrollbar-thumb { background: #C8D2E0; border-radius: 2px; }
-
-    .modal-date {
-        font-size: 0.74rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        color: var(--blue);
-        text-transform: uppercase;
-        margin-bottom: 10px;
-    }
-
-    .modal-body h2 {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: var(--text);
-        margin-bottom: 18px;
-        line-height: 1.35;
-        letter-spacing: -0.01em;
-    }
-
-    .modal-body p {
-        font-size: 0.94rem;
-        color: var(--text-2);
-        line-height: 1.7;
-        margin-bottom: 14px;
-    }
-
-    .modal-body p:last-child { margin-bottom: 0; }
-
-    .modal-body strong { color: var(--text); font-weight: 600; }
-
-    .modal-body .quote {
-        margin: 20px 0;
-        padding: 14px 18px;
-        background: var(--blue-soft);
-        border-radius: var(--radius-sm);
-        font-size: 0.9rem;
-        color: var(--blue);
-        font-weight: 500;
-        line-height: 1.55;
-    }
-
-    /* ===== PRODUCTS ===== */
-    .product-list { display: flex; flex-direction: column; gap: 10px; }
-
-    .product-item {
-        background: #fff;
-        border-radius: var(--radius);
-        padding: 18px 20px;
-        border: 1px solid var(--line);
-        display: flex;
-        gap: 16px;
-        align-items: flex-start;
-    }
-
-    .product-num {
-        width: 32px; height: 32px;
-        background: var(--blue-soft);
-        color: var(--blue);
-        border-radius: 9px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.78rem;
-        font-weight: 700;
-        flex-shrink: 0;
-    }
-
-    .product-item h4 {
-        font-size: 0.96rem;
-        font-weight: 600;
-        color: var(--text);
-        margin-bottom: 5px;
-    }
-
-    .product-item p { font-size: 0.86rem; color: var(--text-2); line-height: 1.55; }
-
-    /* ===== CONTACTS ===== */
-    .contacts-list {
-        background: #fff;
-        border-radius: var(--radius);
-        border: 1px solid var(--line);
-        overflow: hidden;
-        margin-bottom: 20px;
-    }
-
-    .contact-line {
-        padding: 14px 18px;
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        font-size: 0.9rem;
-        border-bottom: 1px solid var(--line-2);
-    }
-
-    .contact-line:last-child { border-bottom: none; }
-
-    .contact-line .label {
-        color: var(--text-3);
-        font-weight: 500;
-        flex-shrink: 0;
-        min-width: 90px;
-        font-size: 0.82rem;
-    }
-
-    .contact-line .value {
-        color: var(--text);
-        font-weight: 500;
-        text-align: right;
-        font-size: 0.88rem;
-        word-break: break-all;
-    }
-
-    .form {
-        background: #fff;
-        border-radius: var(--radius);
-        border: 1px solid var(--line);
-        padding: 22px 20px;
-    }
-
+    .form { background: #fff; border-radius: var(--radius); border: 1px solid var(--line-soft); padding: 24px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
     .field { margin-bottom: 16px; }
-
-    .field label {
-        display: block;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: var(--text-2);
-        margin-bottom: 7px;
+    .field label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-2); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .field input, .field textarea {
+        width: 100%; padding: 13px 16px; border: 1px solid var(--line); border-radius: var(--radius-sm);
+        background: #F8FAFC; color: var(--text); font-family: inherit; font-size: 0.92rem; outline: none; transition: border-color 0.2s, background 0.2s;
     }
+    .field input:focus, .field textarea:focus { border-color: var(--gold); background: #fff; }
+    .field textarea { resize: vertical; min-height: 110px; }
 
-    .field input,
-    .field textarea {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1.5px solid var(--line);
-        border-radius: var(--radius-sm);
-        background: #FBFCFE;
-        color: var(--text);
-        font-family: inherit;
-        font-size: 0.92rem;
-        transition: border-color 0.15s, background 0.15s;
-        outline: none;
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-        border-color: var(--blue);
-        background: #fff;
-    }
-
-    .field textarea { resize: vertical; min-height: 100px; font-family: inherit; }
-
-    /* ===== CAREER ===== */
-    .vacancy-list { display: flex; flex-direction: column; gap: 10px; }
-
-    .vacancy {
-        background: #fff;
-        border-radius: var(--radius);
-        border: 1px solid var(--line);
-        padding: 20px;
-    }
-
-    .vacancy-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 12px;
-        margin-bottom: 10px;
-    }
-
-    .vacancy h4 {
-        font-size: 0.98rem;
-        font-weight: 600;
-        color: var(--text);
-        line-height: 1.35;
-    }
-
-    .vacancy-type {
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: var(--text-3);
-        white-space: nowrap;
-        flex-shrink: 0;
-        padding-top: 3px;
-    }
-
-    .vacancy p {
-        font-size: 0.87rem;
-        color: var(--text-2);
-        line-height: 1.6;
-        margin-bottom: 12px;
-    }
-
+    .vacancy-list { display: flex; flex-direction: column; gap: 12px; }
+    .vacancy { background: #fff; border-radius: var(--radius); border: 1px solid var(--line-soft); padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .vacancy-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+    .vacancy h4 { font-size: 1.02rem; font-weight: 700; color: var(--navy); }
+    .vacancy-type { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); white-space: nowrap; flex-shrink: 0; }
+    .vacancy p { font-size: 0.88rem; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
     .vacancy-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .vacancy-tag { font-size: 0.76rem; color: var(--text-2); padding: 5px 12px; border-radius: 20px; background: #F1F5F9; font-weight: 500; cursor: pointer; }
 
-    .vacancy-tag {
-        font-size: 0.75rem;
-        color: var(--text-2);
-        padding: 4px 11px;
-        border-radius: 20px;
-        background: var(--bg);
+    .modal-overlay {
+        position: fixed; inset: 0; background: rgba(4, 13, 26, 0.7); z-index: 200;
+        opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s;
+        display: flex; align-items: flex-end; justify-content: center;
+    }
+    .modal-overlay.show { opacity: 1; visibility: visible; }
+    .modal {
+        background: #fff; width: 100%; max-width: 640px; max-height: 90vh;
+        border-radius: 20px 20px 0 0; transform: translateY(30px);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex; flex-direction: column; overflow: hidden; border-top: 3px solid var(--gold);
+    }
+    .modal-overlay.show .modal { transform: translateY(0); }
+    .modal-head { padding: 18px 20px; border-bottom: 1px solid var(--line-soft); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+    .modal-head .label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .modal-close {
+        width: 36px; height: 36px; background: #F1F5F9; border: none; border-radius: 8px;
+        color: var(--navy); cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-body { padding: 24px 20px 32px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .modal-date { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .modal-body h2 { font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 16px; line-height: 1.3; }
+    .modal-body p { font-size: 0.94rem; color: var(--text-2); line-height: 1.7; margin-bottom: 14px; }
+    .modal-body .quote {
+        margin: 20px 0; padding: 14px 18px; background: rgba(197, 160, 89, 0.1);
+        border-radius: var(--radius-sm); font-size: 0.92rem; color: var(--navy); font-weight: 600; border-left: 3px solid var(--gold);
     }
 
-    .vacancy .btn { font-size: 0.86rem; padding: 11px; }
-
-    /* ===== DRAWER ===== */
-    .overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(15, 30, 50, 0.45);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.22s;
-        z-index: 100;
-    }
-
+    .overlay { position: fixed; inset: 0; background: rgba(4, 13, 26, 0.5); opacity: 0; visibility: hidden; transition: all 0.25s; z-index: 100; }
     .overlay.show { opacity: 1; visibility: visible; }
-
     .drawer {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 82%;
-        max-width: 320px;
-        height: 100vh;
-        height: 100dvh;
-        background: linear-gradient(180deg, #123A5E 0%, #1B4B77 100%);
-        color: #fff;
-        z-index: 101;
-        transition: right 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
+        position: fixed; top: 0; right: -100%; width: 85%; max-width: 320px; height: 100vh; height: 100dvh;
+        background: var(--navy-dark); color: #fff; z-index: 101; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex; flex-direction: column; overflow-y: auto; border-left: 2px solid var(--gold);
     }
-
     .drawer.open { right: 0; }
-
-    .drawer-head {
-        padding: 14px 18px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-shrink: 0;
-        height: 58px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .drawer-head .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 0.9rem;
-        font-weight: 600;
-    }
-
-    .drawer-head .brand-mark {
-        width: 30px; height: 30px;
-        font-size: 0.85rem;
-        border-radius: 8px;
-    }
-
-    .drawer-close {
-        width: 36px;
-        height: 36px;
-        background: rgba(255, 255, 255, 0.08);
-        border: none;
-        border-radius: 9px;
-        color: #fff;
-        cursor: pointer;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 1;
-        font-family: inherit;
-    }
-
-    .drawer-close:active { background: rgba(255, 255, 255, 0.18); }
-
-    .drawer-label {
-        padding: 20px 22px 8px;
-        font-size: 0.68rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #7E9CBB;
-        font-weight: 600;
-    }
-
+    .drawer-head { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 64px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
+    .drawer-head .brand { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+    .drawer-head .brand-mark { width: 32px; height: 32px; font-size: 0.9rem; }
+    .drawer-close { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border: none; border-radius: 8px; color: #fff; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
+    .drawer-label { padding: 22px 22px 8px; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
     .drawer-nav { list-style: none; padding: 0 12px; }
-
     .drawer-nav a {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        color: #C5D4E4;
-        text-decoration: none;
-        padding: 13px 12px;
-        font-size: 0.94rem;
-        font-weight: 500;
-        cursor: pointer;
-        border-radius: 10px;
-        transition: color 0.15s, background 0.15s;
-        margin-bottom: 2px;
+        display: flex; align-items: center; gap: 14px; color: #CBD5E1; text-decoration: none;
+        padding: 14px 14px; font-size: 0.95rem; font-weight: 500; cursor: pointer; border-radius: 8px; transition: all 0.2s; margin-bottom: 2px;
     }
+    .drawer-nav a:active { background: rgba(255,255,255,0.08); }
+    .drawer-nav a.active { color: #fff; background: rgba(197, 160, 89, 0.2); border-left: 3px solid var(--gold); }
+    .drawer-nav .num { font-size: 0.75rem; font-weight: 700; color: var(--gold); width: 20px; flex-shrink: 0; }
+    .drawer-foot { margin-top: auto; padding: 20px 22px; border-top: 1px solid rgba(197, 160, 89, 0.2); font-size: 0.76rem; color: var(--text-3); text-align: center; cursor: pointer; }
 
-    .drawer-nav a:active { background: rgba(255, 255, 255, 0.08); }
-
-    .drawer-nav a.active { color: #fff; background: rgba(255, 255, 255, 0.1); }
-
-    .drawer-nav .num {
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: #7E9CBB;
-        width: 22px;
-        flex-shrink: 0;
-        letter-spacing: 0.04em;
+    /* Gov Console Modal */
+    .gov-console {
+        position: fixed; inset: 0; background: rgba(4, 13, 26, 0.95); z-index: 999;
+        display: none; flex-direction: column; padding: 20px; color: #00FF66; font-family: monospace;
     }
+    .gov-console.active { display: flex; }
+    .gov-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #00FF66; padding-bottom: 10px; margin-bottom: 15px; }
+    .gov-body { flex: 1; overflow-y: auto; font-size: 0.85rem; line-height: 1.5; white-space: pre-wrap; word-break: break-all; }
+    .gov-close-btn { background: #00FF66; color: #040D1A; border: none; padding: 6px 14px; font-weight: bold; cursor: pointer; border-radius: 4px; }
 
-    .drawer-nav a.active .num { color: #9EB8D2; }
-
-    .drawer-foot {
-        margin-top: auto;
-        padding: 20px 22px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 0.74rem;
-        color: #7E9CBB;
+    /* Satellite Radar Modal */
+    .sat-modal {
+        position: fixed; inset: 0; background: rgba(2, 6, 23, 0.94); z-index: 400;
+        display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; color: #38BDF8; font-family: monospace; text-align: center;
     }
+    .sat-modal.active { display: flex; }
+    .sat-radar { width: 220px; height: 220px; border: 2px dashed #38BDF8; border-radius: 50%; position: relative; margin: 20px auto; display: flex; align-items: center; justify-content: center; animation: spinRadar 8s linear infinite; }
+    @keyframes spinRadar { 100% { transform: rotate(360deg); } }
+    .sat-dot { width: 14px; height: 14px; background: #EF4444; border-radius: 50%; position: absolute; top: 45px; right: 55px; box-shadow: 0 0 12px #EF4444; }
 
-    /* ===== DESKTOP ===== */
+    /* Self-destruct Overlay */
+    .destruct-overlay {
+        position: fixed; inset: 0; background: #000; z-index: 9999; display: none;
+        flex-direction: column; align-items: center; justify-content: center; color: #EF4444; font-family: monospace; text-align: center; padding: 20px;
+    }
+    .destruct-overlay.active { display: flex; }
+
+    /* Mini Game */
+    .game-overlay {
+        position: fixed; inset: 0; background: rgba(4, 13, 26, 0.9); z-index: 300;
+        display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .game-overlay.active { display: flex; }
+    .game-container {
+        width: 100%; max-width: 380px; height: 520px; background: #0F172A;
+        border: 2px solid var(--gold); border-radius: var(--radius); position: relative; overflow: hidden; display: flex; flex-direction: column;
+    }
+    .game-canvas { flex: 1; background: linear-gradient(180deg, #1E293B 0%, #0A192F 100%); position: relative; cursor: pointer; }
+    .game-ui { padding: 15px 20px; background: var(--navy-dark); display: flex; justify-content: space-between; align-items: center; color: #fff; border-top: 1px solid rgba(197,160,89,0.3); }
+    .drone {
+        position: absolute; width: 34px; height: 22px; background: var(--gold); border-radius: 6px;
+        left: 60px; top: 200px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: var(--navy-dark);
+    }
+    .pipe { position: absolute; width: 52px; background: #334155; border: 1px solid var(--gold); left: 380px; border-radius: 4px; }
+    .pipe-top { top: 0; }
+    .pipe-bottom { bottom: 0; }
+    .game-score-display { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: bold; color: var(--gold); }
+    .game-msg {
+        position: absolute; inset: 0; background: rgba(4, 13, 26, 0.85); display: flex;
+        flex-direction: column; align-items: center; justify-content: center; gap: 15px; color: #fff; text-align: center; padding: 20px;
+    }
+    .game-msg h3 { font-size: 1.5rem; color: var(--gold); font-family: 'Playfair Display', serif; }
+    .game-msg p { font-size: 0.88rem; color: #94A3B8; }
+
     @media (min-width: 660px) {
-        body { background: #E4EAF1; }
-        .app {
-            margin: 24px auto;
-            height: calc(100vh - 48px);
-            max-width: 700px;
-            border-radius: 20px;
-            box-shadow: 0 16px 50px rgba(18, 58, 94, 0.14);
-            overflow: hidden;
-        }
-        .screen { padding: 28px 28px 80px; }
+        body { background: #0A192F; }
+        .app { margin: 20px auto; height: calc(100vh - 40px); max-width: 680px; border-radius: 16px; border: 1px solid var(--gold); }
+        .screen { padding: 30px 30px 80px; }
         .home-block { padding: 42px 36px 36px; }
-        .home-block h1 { font-size: 1.75rem; }
         .home-buttons { flex-direction: row; }
         .home-buttons .btn { flex: 1; }
         .stats-grid { grid-template-columns: repeat(4, 1fr); }
-        .page-title { font-size: 1.55rem; }
-        .climate-header { padding: 36px 32px; }
-        .climate-header h1 { font-size: 1.5rem; }
-        .modal {
-            border-radius: 20px;
-            max-height: 85vh;
-            margin-bottom: 40px;
-        }
-        .modal-overlay { align-items: center; padding: 24px; }
+        .climate-selector { grid-template-columns: repeat(4, 1fr); }
     }
 </style>
 </head>
-<body>
+<body id="bodyRoot">
 
 <div class="app">
-
     <header class="header">
         <div class="header-left">
-            <div class="brand-mark">A</div>
-            <div class="brand-name">
+            <div class="brand-mark" id="brandShield">A</div>
+            <div class="brand-name" id="brandTitleNav">
                 Aimatov Corporation
-                <small>Est. 2008</small>
+                <small>Federal Engineering & Infrastructure</small>
             </div>
         </div>
         <button class="menu-btn" id="menuBtn" aria-label="Меню">
@@ -1099,40 +407,40 @@
     </header>
 
     <main class="screens">
-
         <!-- ГЛАВНАЯ -->
         <section class="screen active" id="home">
             <div class="home-block">
-                <span class="home-eyebrow">Инновации с 2008 года</span>
-                <h1>Инженерные решения и технологии для промышленности</h1>
-                <p>Разрабатываем программные платформы, системы автоматизации и инфраструктурные решения для компаний в четырёх странах.</p>
+                <span class="home-eyebrow">Government & Industry Leader // Est. 2008</span>
+                <h1>Инженерные стандарты государственного масштаба</h1>
+                <p>Проектирование критической инфраструктуры, автоматизированные системы управления и передовые климатические комплексы.</p>
                 <div class="home-buttons">
                     <button class="btn" onclick="goTo('climate')">Проект Climate Park</button>
-                    <button class="btn ghost" onclick="goTo('contacts')">Связаться с нами</button>
+                    <button class="btn ghost" onclick="goTo('contacts')">Связаться</button>
                 </div>
             </div>
 
+            <!-- DIRECTOR -->
             <div class="director">
-                <div class="director-avatar">АА</div>
+                <div class="director-avatar" id="directorAvatar">АА</div>
                 <div class="director-info">
                     <h3>Айматов Александр</h3>
                     <div class="director-role">Генеральный директор</div>
-                    <div class="director-quote">«Технологии должны работать на бизнес, а не наоборот.»</div>
+                    <div class="director-quote">«Институциональная надежность и точные технологии определяют будущее государства.»</div>
                 </div>
             </div>
 
             <div class="stats-grid">
+                <div class="stat" id="statProjectsTrigger">
+                    <div class="stat-value">1.4k</div>
+                    <div class="stat-label">проектов</div>
+                </div>
                 <div class="stat">
-                    <div class="stat-value">15+</div>
-                    <div class="stat-label">лет на рынке</div>
+                    <div class="stat-value">18+</div>
+                    <div class="stat-label">лет опыта</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">500+</div>
-                    <div class="stat-label">сотрудников</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">1200</div>
-                    <div class="stat-label">проектов</div>
+                    <div class="stat-label">экспертов</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">4</div>
@@ -1143,13 +451,12 @@
 
         <!-- О НАС -->
         <section class="screen" id="about">
-            <h2 class="page-title">О компании</h2>
-            <p class="page-sub">Инженерный холдинг с международным присутствием.</p>
+            <h2 class="page-title" id="aboutTitle">О корпорации</h2>
+            <p class="page-sub" id="illuminatiTrigger">Стратегический холдинг федерального значения.</p>
 
             <div class="prose">
-                <p>Компания <strong>Aimatov Corporation</strong> основана в 2008 году как инженерная студия. Сегодня -- международный холдинг с офисами в четырёх странах и более чем 500 сотрудниками.</p>
-                <p>Основные компетенции: разработка корпоративного ПО, промышленная автоматизация, облачные инфраструктуры, решения на базе искусственного интеллекта.</p>
-                <p>Среди клиентов -- промышленные предприятия, финансовые организации, государственные структуры и научные институты.</p>
+                <p>Основанная в 2008 году, <strong id="corpStrong">Aimatov Corporation</strong> специализируется на реализации масштабных инженерных проектов для промышленных гигантов, научных институтов и государственных ведомств.</p>
+                <p>Ключевые профили: высокозащищенные облачные системы, промышленный IoT, автоматизация логистики и уникальные климатические R&D лаборатории.</p>
             </div>
 
             <div class="section-label">Руководство</div>
@@ -1162,223 +469,94 @@
                     </div>
                 </div>
                 <div class="member">
-                    <div class="member-avatar">ЕС</div>
+                    <div class="member-avatar" id="avatarSokolova">ЕС</div>
                     <div class="member-info">
                         <h4>Соколова Елена</h4>
                         <span>Технический директор</span>
                     </div>
                 </div>
-                <div class="member">
-                    <div class="member-avatar">ДК</div>
-                    <div class="member-info">
-                        <h4>Ковалёв Дмитрий</h4>
-                        <span>Директор по продуктам</span>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-avatar">МН</div>
-                    <div class="member-info">
-                        <h4>Новикова Мария</h4>
-                        <span>Директор по персоналу</span>
-                    </div>
-                </div>
             </div>
 
-            <div class="section-label">Направления деятельности</div>
+            <div class="section-label">Направления</div>
             <div class="dir-list">
                 <div class="dir-row">
                     <div class="dir-row-info">
-                        <strong>Разработка ПО</strong>
-                        <span>Корпоративные и мобильные платформы</span>
+                        <strong>Инфраструктурное ПО</strong>
+                        <span>Защищенные корпоративные ядра</span>
                     </div>
-                    <div class="dir-share">35%</div>
-                </div>
-                <div class="dir-row">
-                    <div class="dir-row-info">
-                        <strong>Промышленная автоматизация</strong>
-                        <span>IoT и системы управления</span>
-                    </div>
-                    <div class="dir-share">22%</div>
-                </div>
-                <div class="dir-row">
-                    <div class="dir-row-info">
-                        <strong>Облачные решения</strong>
-                        <span>Инфраструктура и DevOps</span>
-                    </div>
-                    <div class="dir-share">18%</div>
-                </div>
-                <div class="dir-row">
-                    <div class="dir-row-info">
-                        <strong>Искусственный интеллект</strong>
-                        <span>ML-модели и аналитика данных</span>
-                    </div>
-                    <div class="dir-share">13%</div>
-                </div>
-                <div class="dir-row">
-                    <div class="dir-row-info">
-                        <strong>Climate Park & Biology</strong>
-                        <span>Управляемый климат и биоисследования</span>
-                    </div>
-                    <div class="dir-share">12%</div>
+                    <div class="dir-share" id="shareSoftware">35%</div>
                 </div>
             </div>
         </section>
 
-        <!-- CLIMATE -->
+        <!-- CLIMATE PARK -->
         <section class="screen" id="climate">
-            <div class="climate-header">
-                <span class="tag">Отдельный проект</span>
+            <div class="climate-header" id="climateHeaderBlock">
+                <span class="tag" id="tagClimatePark">Флагманский комплекс</span>
                 <h1>Climate Park & Biology</h1>
-                <p>Три гектара управляемой природы и исследовательский центр. Два объекта -- один инфраструктурный комплекс.</p>
+                <p>Три гектара высокоточной управляемой среды для климатических и биологических испытаний.</p>
             </div>
 
-            <div class="climate-section">
+            <div class="climate-selector">
+                <button class="climate-sel-btn active" onclick="handleClimateClick('desert', this)">Пустыня</button>
+                <button class="climate-sel-btn" onclick="handleClimateClick('storm', this)">Шторм</button>
+                <button class="climate-sel-btn" onclick="handleClimateClick('taiga', this)">Тайга</button>
+                <button class="climate-sel-btn" onclick="handleClimateClick('tropic', this)">Тропики</button>
+            </div>
+
+            <div class="climate-section" id="sectionClimatePark">
                 <div class="climate-section-head">
-                    <div class="marker">01</div>
+                    <div class="marker" id="markerAntiGrav">01</div>
                     <div>
                         <h3>Aimatov Climate Park</h3>
-                        <div class="meta">2 гектара · 20 000 м² · управляемый климат</div>
+                        <div class="meta" id="metaExtreme">2 гектара · Управляемый экстрим-климат</div>
                     </div>
                 </div>
                 <div class="climate-section-body">
-                    <p>Закрытое пространство, в котором создаются любые климатические сценарии. Погодные условия переключаются по команде оператора -- от сухого жаркого воздуха до тропического ливня или тумана северного леса.</p>
-
-                    <div class="subhead">Сценарии</div>
-                    <div class="chips">
-                        <span class="chip">Пустынный</span>
-                        <span class="chip">Тропический</span>
-                        <span class="chip">Северный лес</span>
-                        <span class="chip">Штормовой</span>
-                    </div>
-
-                    <div class="subhead">Технические решения</div>
-                    <ul class="feature-list">
-                        <li>Полноспектральные LED-системы искусственного освещения</li>
-                        <li>Управляемые осадки через форсунки высокого давления</li>
-                        <li>Ветер от лёгкого бриза до штормового режима</li>
-                        <li>Собственная скважина и замкнутый цикл водоснабжения</li>
-                        <li>Гибридная энергетика с резервным подключением к сети</li>
-                    </ul>
-
-                    <div class="subhead">Применение</div>
-                    <p>Киносъёмки без выезда на натуру, тематические мероприятия с управляемой погодой, корпоративные и образовательные события.</p>
+                    <p>Комплекс позволяет в режиме реального времени моделировать любые погодные условия.</p>
                 </div>
             </div>
 
-            <div class="climate-section bio">
+            <div class="climate-section" id="sectionBiology">
                 <div class="climate-section-head">
                     <div class="marker">02</div>
                     <div>
                         <h3>Aimatov Biology</h3>
-                        <div class="meta">1 гектар · 10 000 м² · исследовательский центр</div>
+                        <div class="meta">1 гектар · Биологические камеры</div>
                     </div>
                 </div>
                 <div class="climate-section-body">
-                    <p>Научный комплекс для изучения влияния климатических условий на растения, микроорганизмы и материалы. Климатические камеры позволяют воспроизводить заданные режимы с высокой точностью.</p>
-
-                    <div class="subhead">Рабочий диапазон</div>
                     <div class="chips">
-                        <span class="chip">−10 °C</span>
-                        <span class="chip">+50 °C</span>
-                        <span class="chip">20 % влажности</span>
-                        <span class="chip">95 % влажности</span>
+                        <span class="chip" id="chipZeroTemp">Диапазон: −30°C ... +60°C</span>
                     </div>
-
-                    <div class="subhead">Направления</div>
-                    <ul class="feature-list">
-                        <li>Климатические камеры с точной регулировкой температуры</li>
-                        <li>Контроль влажности в широком диапазоне</li>
-                        <li>Фитопроизводство в управляемой среде</li>
-                        <li>Исследование устойчивости биологических организмов</li>
-                        <li>Образовательные программы и стажировки</li>
-                    </ul>
-
-                    <div class="subhead">Партнёры</div>
-                    <p>Научные институты, университеты, агропромышленные компании и биотехнологические стартапы.</p>
                 </div>
-            </div>
-
-            <div class="motto">
-                <h3>Управляемая среда. Прогнозируемый результат.</h3>
-                <p>Aimatov Corporation · Climate Division</p>
             </div>
         </section>
 
         <!-- НОВОСТИ -->
         <section class="screen" id="news">
-            <h2 class="page-title">Новости</h2>
-            <p class="page-sub">Пресс-релизы и события компании.</p>
-
+            <h2 class="page-title" id="newsPressTitle">Пресс-релизы</h2>
+            <p class="page-sub">Официальные сводки и объявления компании.</p>
             <div class="news-list">
                 <div class="news-item" onclick="openNews('news-1')">
-                    <div class="news-date">20 июня 2024</div>
-                    <h4>Открытие Aimatov Climate Park</h4>
-                    <p>Введён в эксплуатацию первый в регионе парк управляемого климата площадью 2 гектара.</p>
-                    <span class="news-link">Читать полностью</span>
-                </div>
-
-                <div class="news-item" onclick="openNews('news-2')">
-                    <div class="news-date">15 мая 2024</div>
-                    <h4>Релиз Aimatov Cloud 2.0</h4>
-                    <p>Обновление облачной платформы: контейнеризация, мониторинг и расширенная система ролей.</p>
-                    <span class="news-link">Читать полностью</span>
-                </div>
-
-                <div class="news-item" onclick="openNews('news-3')">
-                    <div class="news-date">2 апреля 2024</div>
-                    <h4>Премия «Инноватор года»</h4>
-                    <p>Компания отмечена национальной премией за вклад в промышленную автоматизацию и прикладной ИИ.</p>
-                    <span class="news-link">Читать полностью</span>
-                </div>
-
-                <div class="news-item" onclick="openNews('news-4')">
-                    <div class="news-date">18 марта 2024</div>
-                    <h4>Запуск направления Climate-as-a-Service</h4>
-                    <p>Открыт коммерческий доступ к аренде климатических сценариев Climate Park для внешних клиентов.</p>
-                    <span class="news-link">Читать полностью</span>
-                </div>
-
-                <div class="news-item" onclick="openNews('news-5')">
-                    <div class="news-date">5 февраля 2024</div>
-                    <h4>Партнёрство с научными институтами</h4>
-                    <p>Подписаны соглашения о совместных исследованиях с тремя университетами в рамках проекта Biology.</p>
-                    <span class="news-link">Читать полностью</span>
+                    <div class="news-date">12 октября 2026</div>
+                    <h4>Расширение мощностей Climate Park</h4>
+                    <p>Завершена модернизация второй очереди испытательных павильонов...</p>
+                    <span class="news-link">Подробнее</span>
                 </div>
             </div>
         </section>
 
         <!-- ПРОДУКТЫ -->
         <section class="screen" id="products">
-            <h2 class="page-title">Продукты и услуги</h2>
-            <p class="page-sub">Линейка решений Aimatov Corporation.</p>
-
+            <h2 class="page-title">Решения</h2>
+            <p class="page-sub">Технологические комплексы промышленного назначения.</p>
             <div class="product-list">
                 <div class="product-item">
                     <div class="product-num">01</div>
                     <div>
-                        <h4>Aimatov Platform</h4>
-                        <p>Корпоративная платформа для управления бизнес-процессами, документооборота и внутренней аналитики.</p>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-num">02</div>
-                    <div>
-                        <h4>Aimatov Cloud</h4>
-                        <p>Облачная инфраструктура с гарантированным уровнем доступности и изолированной средой для корпоративных клиентов.</p>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-num">03</div>
-                    <div>
-                        <h4>AI Solutions</h4>
-                        <p>Решения на основе машинного обучения: прогнозирование, компьютерное зрение, обработка естественного языка.</p>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-num">04</div>
-                    <div>
-                        <h4>Climate-as-a-Service</h4>
-                        <p>Аренда климатических сценариев Climate Park для съёмочных групп, event-агентств и научных организаций.</p>
+                        <h4 id="prodEnterprise">Aimatov Enterprise OS</h4>
+                        <p>Защищенная операционная среда для управления промышленными кластерами.</p>
                     </div>
                 </div>
             </div>
@@ -1387,117 +565,62 @@
         <!-- КОНТАКТЫ -->
         <section class="screen" id="contacts">
             <h2 class="page-title">Контакты</h2>
-            <p class="page-sub">Ответ в течение одного рабочего дня.</p>
+            <p class="page-sub">Официальные каналы связи с департаментами.</p>
 
             <div class="contacts-list">
                 <div class="contact-line">
-                    <span class="label">Адрес</span>
-                    <span class="value">Москва, ул. Инновационная, 15</span>
-                </div>
-                <div class="contact-line">
-                    <span class="label">Климат-парк</span>
-                    <span class="value">Кампус «Природа»</span>
+                    <span class="label">Штаб-квартира</span>
+                    <span class="value" id="addressCoord">Москва, ул. Инновационная, 15</span>
                 </div>
                 <div class="contact-line">
                     <span class="label">Телефон</span>
-                    <span class="value">+7 (495) 123-45-67</span>
+                    <span class="value" id="phoneWow">+7 (495) 900-50-50</span>
                 </div>
                 <div class="contact-line">
-                    <span class="label">Email</span>
-                    <span class="value">aimatov.corporation@gmail.com</span>
-                </div>
-                <div class="contact-line">
-                    <span class="label">Часы работы</span>
+                    <span class="label" id="contactHoursLabel">Часы работы</span>
                     <span class="value">Пн–Пт · 9:00–18:00</span>
                 </div>
             </div>
 
-            <div class="section-label">Форма обратной связи</div>
-            <form class="form" onsubmit="event.preventDefault(); alert('Сообщение отправлено.'); this.reset();">
+            <div class="section-label">Запрос в секретариат</div>
+            <form class="form" onsubmit="handleContactSubmit(event)">
                 <div class="field">
-                    <label>Имя</label>
-                    <input type="text" placeholder="Иван Иванов" required>
+                    <label>ФИО / Организация</label>
+                    <input type="text" id="contactNameInput" placeholder="Введите данные" required>
                 </div>
                 <div class="field">
-                    <label>Email</label>
-                    <input type="email" placeholder="name@company.ru" required>
+                    <label>Электронная почта</label>
+                    <input type="email" placeholder="name@domain.ru" required>
                 </div>
                 <div class="field">
-                    <label>Сообщение</label>
-                    <textarea placeholder="Опишите ваш запрос" required></textarea>
+                    <label>Суть обращения</label>
+                    <textarea placeholder="Текст запроса" required></textarea>
                 </div>
-                <button type="submit" class="btn">Отправить</button>
+                <button type="submit" class="btn">Отправить запрос</button>
             </form>
         </section>
 
         <!-- КАРЬЕРА -->
         <section class="screen" id="career">
             <h2 class="page-title">Вакансии</h2>
-            <p class="page-sub">Открытые позиции в компании.</p>
-
+            <p class="page-sub" id="careerSub">Кадровый резерв корпорации.</p>
             <div class="vacancy-list">
-                <div class="vacancy">
-                    <div class="vacancy-header">
-                        <h4>Инженер климатических систем</h4>
-                        <div class="vacancy-type">Полная занятость</div>
-                    </div>
-                    <p>Разработка, запуск и техническое обслуживание систем управляемого климата в парке.</p>
-                    <div class="vacancy-tags">
-                        <span class="vacancy-tag">HVAC</span>
-                        <span class="vacancy-tag">Автоматизация</span>
-                        <span class="vacancy-tag">Опыт 3+ года</span>
-                    </div>
-                    <button class="btn">Отправить резюме</button>
-                </div>
-
                 <div class="vacancy">
                     <div class="vacancy-header">
                         <h4>Биолог-исследователь</h4>
                         <div class="vacancy-type">Полная занятость</div>
                     </div>
-                    <p>Проведение экспериментов по влиянию климатических условий на биологические объекты.</p>
+                    <p id="bioDesc">Проведение экспериментов по влиянию климата на объекты.</p>
                     <div class="vacancy-tags">
-                        <span class="vacancy-tag">Биология</span>
-                        <span class="vacancy-tag">R&D</span>
-                        <span class="vacancy-tag">Лаборатория</span>
+                        <span class="vacancy-tag" id="bioTag">Лаборатория R&D</span>
                     </div>
-                    <button class="btn">Отправить резюме</button>
-                </div>
-
-                <div class="vacancy">
-                    <div class="vacancy-header">
-                        <h4>Frontend Developer</h4>
-                        <div class="vacancy-type">Удалённо</div>
-                    </div>
-                    <p>Разработка интерфейсов корпоративных платформ на React и TypeScript.</p>
-                    <div class="vacancy-tags">
-                        <span class="vacancy-tag">React</span>
-                        <span class="vacancy-tag">TypeScript</span>
-                        <span class="vacancy-tag">3+ года</span>
-                    </div>
-                    <button class="btn">Отправить резюме</button>
-                </div>
-
-                <div class="vacancy">
-                    <div class="vacancy-header">
-                        <h4>Data Scientist</h4>
-                        <div class="vacancy-type">Москва · гибрид</div>
-                    </div>
-                    <p>Разработка моделей машинного обучения для климатических и промышленных задач.</p>
-                    <div class="vacancy-tags">
-                        <span class="vacancy-tag">Python</span>
-                        <span class="vacancy-tag">ML</span>
-                        <span class="vacancy-tag">TensorFlow</span>
-                    </div>
-                    <button class="btn">Отправить резюме</button>
                 </div>
             </div>
         </section>
-
     </main>
 </div>
 
-<!-- DRAWER -->
+<!-- DRAWER MENU -->
 <div class="overlay" id="overlay"></div>
 <aside class="drawer" id="drawer">
     <div class="drawer-head">
@@ -1508,101 +631,100 @@
         <button class="drawer-close" id="drawerClose" aria-label="Закрыть">✕</button>
     </div>
 
-    <div class="drawer-label">Разделы</div>
+    <div class="drawer-label">Навигация</div>
     <ul class="drawer-nav" id="drawerNav">
         <li><a data-screen="home" class="active"><span class="num">01</span> Главная</a></li>
-        <li><a data-screen="about"><span class="num">02</span> О компании</a></li>
+        <li><a data-screen="about"><span class="num">02</span> О корпорации</a></li>
         <li><a data-screen="climate"><span class="num">03</span> Climate & Biology</a></li>
-        <li><a data-screen="news"><span class="num">04</span> Новости</a></li>
-        <li><a data-screen="products"><span class="num">05</span> Продукты и услуги</a></li>
+        <li><a data-screen="news"><span class="num">04</span> Пресс-релизы</a></li>
+        <li><a data-screen="products"><span class="num">05</span> Решения</a></li>
         <li><a data-screen="contacts"><span class="num">06</span> Контакты</a></li>
         <li><a data-screen="career"><span class="num">07</span> Карьера</a></li>
+        <li id="menuSatItem" style="display: none;"><a onclick="openSatModal()"><span class="num">08</span> Спутник AIM-SAT-1</a></li>
     </ul>
 
-    <div class="drawer-foot">
-        © 2024 Aimatov Corporation
+    <div class="drawer-foot" id="copyrightFoot">
+        <span id="secureEnclaveSpan">Secure Enclave v4.8</span><br>© 2026 Aimatov Corporation
     </div>
 </aside>
 
-<!-- MODAL для новостей -->
+<!-- NEWS MODAL -->
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal" role="dialog" aria-modal="true">
         <div class="modal-head">
-            <span class="label">Новость</span>
+            <span class="label">Официальный релиз</span>
             <button class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
         </div>
         <div class="modal-body" id="modalBody"></div>
     </div>
 </div>
 
-<script>
-    /* ===== Данные новостей ===== */
-    const NEWS = {
-        'news-1': {
-            date: '20 июня 2024',
-            title: 'Открытие Aimatov Climate Park',
-            content: `
-                <p>Введён в эксплуатацию первый в регионе парк управляемого климата площадью 2 гектара. Проект реализован за 18 месяцев -- от проектирования до запуска первой очереди.</p>
-                <div class="quote">«Climate Park -- это не аттракцион. Это инженерная платформа, где климат становится управляемым параметром.»</div>
-                <p>Парк оснащён <strong>полноспектральными LED-системами</strong> искусственного освещения, управляемыми системами осадков, ветра и тумана. Все сценарии -- от пустынного до штормового -- переключаются за минуты.</p>
-                <p>На территории действует замкнутый цикл водоснабжения и гибридная энергетика: солнечные панели на крыше плюс резервное подключение к городской сети.</p>
-                <p>Первые клиенты -- съёмочные группы, event-агентства и научные организации. Коммерческий доступ открыт через сервис Climate-as-a-Service.</p>
-            `
-        },
-        'news-2': {
-            date: '15 мая 2024',
-            title: 'Релиз Aimatov Cloud 2.0',
-            content: `
-                <p>Представлена вторая версия облачной платформы Aimatov Cloud. Основные изменения -- переход на контейнерную архитектуру и расширенные инструменты мониторинга.</p>
-                <div class="quote">«Cloud 2.0 -- это ответ на запросы корпоративных клиентов: больше изоляции, больше контроля, меньше ручной работы.»</div>
-                <p>Ключевые возможности:</p>
-                <p><strong>Контейнеризация.</strong> Поддержка Docker и Kubernetes из коробки. Автоматическое масштабирование под нагрузку.</p>
-                <p><strong>Встроенный мониторинг.</strong> Единая панель со метриками по всем сервисам, алерты, логи в реальном времени.</p>
-                <p><strong>Расширенная система ролей.</strong> Гранулярные права доступа для команд любого размера, аудит действий.</p>
-                <p>Миграция с версии 1.x возможна без простоя. Для действующих клиентов обновление бесплатное.</p>
-            `
-        },
-        'news-3': {
-            date: '2 апреля 2024',
-            title: 'Премия «Инноватор года»',
-            content: `
-                <p>Компания Aimatov Corporation отмечена национальной премией «Инноватор года» за вклад в развитие промышленной автоматизации и прикладного искусственного интеллекта.</p>
-                <div class="quote">«Эта награда -- результат работы всей команды. Мы продолжим развивать технологии, которые реально меняют производство.»</div>
-                <p>Жюри отметило два ключевых проекта:</p>
-                <p><strong>Цифровизация завода «Прогресс».</strong> Автоматизация 12 производственных линий с интеграцией ML-моделей для прогнозирования простоев.</p>
-                <p><strong>AI-платформа для банка «Восток».</strong> Система кредитного скоринга с точностью предсказания 94%.</p>
-                <p>Всего в 2024 году компания реализовала более 120 проектов в четырёх странах.</p>
-            `
-        },
-        'news-4': {
-            date: '18 марта 2024',
-            title: 'Запуск направления Climate-as-a-Service',
-            content: `
-                <p>Открыт коммерческий доступ к аренде климатических сценариев Climate Park для внешних клиентов. Услуга доступна как для разовых проектов, так и по подписке.</p>
-                <div class="quote">«Съёмка в пустыне больше не требует поездки в пустыню. Климат стал сервисом.»</div>
-                <p>Что входит в услугу:</p>
-                <p><strong>Для съёмочных групп.</strong> Сценарии для кино, рекламы и видеопроизводства. Возможность комбинировать климатические режимы в рамках одного съёмочного дня.</p>
-                <p><strong>Для event-агентств.</strong> Тематические мероприятия с управляемой погодой -- от тропической вечеринки до «шторма» в рамках презентации.</p>
-                <p><strong>Для научных организаций.</strong> Тестирование оборудования и материалов в контролируемых климатических условиях.</p>
-                <p>Заявки принимаются через форму обратной связи на сайте.</p>
-            `
-        },
-        'news-5': {
-            date: '5 февраля 2024',
-            title: 'Партнёрство с научными институтами',
-            content: `
-                <p>Подписаны соглашения о совместных исследованиях с тремя ведущими университетами страны в рамках проекта Aimatov Biology.</p>
-                <div class="quote">«Мы строим не просто лабораторию. Мы создаём инфраструктуру для биологических исследований нового уровня.»</div>
-                <p>Направления сотрудничества:</p>
-                <p><strong>Исследование устойчивости растений.</strong> Долгосрочные эксперименты по адаптации агрокультур к экстремальным климатическим условиям.</p>
-                <p><strong>Микробиология.</strong> Изучение поведения микроорганизмов при резких перепадах температуры и влажности.</p>
-                <p><strong>Материаловедение.</strong> Тестирование строительных и промышленных материалов в управляемой среде.</p>
-                <p>Первые совместные программы стартуют в мае 2024 года. Студенты старших курсов получат доступ к стажировкам на базе Biology.</p>
-            `
-        }
-    };
+<!-- SECRET GOVERNMENT CONSOLE -->
+<div class="gov-console" id="govConsole">
+    <div class="gov-header">
+        <span>AIMATOV-OS // SECURE_TERMINAL_V4.8 [CLASSIFIED]</span>
+        <button class="gov-close-btn" id="govCloseBtn">ЗАКРЫТЬ</button>
+    </div>
+    <div class="gov-body">ACCESS GRANTED: LEVEL 5 (DIRECTOR CLEARANCE). Секретные протоколы активированы. Фрагменты шифра «Помоги мне» расшифрованы.</div>
+</div>
 
-    /* ===== Навигация между экранами ===== */
+<!-- SECRET UFO / ROSWELL MODAL -->
+<div class="modal-overlay" id="ufoModal">
+    <div class="modal" style="border-top-color: #10B981;">
+        <div class="modal-head">
+            <span class="label" style="color: #10B981;">PROJECT ROSWELL // CLASSIFIED UFO SCHEMATICS</span>
+            <button class="modal-close" onclick="document.getElementById('ufoModal').classList.remove('show')">✕</button>
+        </div>
+        <div class="modal-body">
+            <h2>Летательный аппарат антигравитационного типа</h2>
+            <p><strong>Объект:</strong> Внеземной транспорт класса «Искра-1», извлеченный в 2024 году.</p>
+            <div class="quote" style="border-left-color: #10B981; color: #064E3B;">Двигательная установка основана на сверхпроводниках управляемого климата и магнитных вихрях.</div>
+        </div>
+    </div>
+</div>
+
+<!-- SATELLITE MODAL -->
+<div class="sat-modal" id="satModal">
+    <h2>AIMATOV SATELLITE TRACKING // AIM-SAT-1</h2>
+    <div class="sat-radar"><div class="sat-dot"></div></div>
+    <p>Траектория: Орбита Земли (Секретный сектор)</p>
+    <button class="btn" style="width: auto; margin-top: 20px; background: #38BDF8; color: #000;" onclick="document.getElementById('satModal').classList.remove('active')">Закрыть радар</button>
+</div>
+
+<!-- SELF DESTRUCT OVERLAY -->
+<div class="destruct-overlay" id="destructOverlay">
+    <h1 style="font-size: 2.5rem; margin-bottom: 20px;">САМОУНИЧТОЖЕНИЕ АРХИВОВ</h1>
+    <h2 id="destructTimer" style="font-size: 4rem; color: #fff;">5</h2>
+    <p style="margin-top: 20px;">[DATA ERASED. WE WERE NEVER HERE.]</p>
+</div>
+
+<!-- FLAPPY DRONE MINI-GAME -->
+<div class="game-overlay" id="gameOverlay">
+    <div class="game-container">
+        <div class="game-ui">
+            <span style="font-size: 0.8rem; font-weight: bold; color: var(--gold);">SIMULATION: DRONE_FLIGHT</span>
+            <div class="game-score-display" id="gameScore">0</div>
+        </div>
+        <div class="game-canvas" id="gameCanvas">
+            <div class="drone" id="drone">DRN</div>
+            <div class="pipe pipe-top" id="pipeTop" style="left: 380px; height: 150px;"></div>
+            <div class="pipe pipe-bottom" id="pipeBottom" style="left: 380px; height: 150px;"></div>
+            <div class="game-msg" id="gameStartMsg">
+                <h3>Climate Drone Test</h3>
+                <p>Тапните по экрану или Пробел для полета.</p>
+                <button class="btn" style="background: var(--gold); color: var(--navy-dark); font-weight:700;" id="gameStartBtn">СТАРТ</button>
+            </div>
+            <div class="game-msg" id="gameOvrMsg" style="display: none;">
+                <h3>Тест завершен</h3>
+                <p>Счет: <span id="finalScore">0</span></p>
+                <button class="btn" style="background: var(--gold); color: var(--navy-dark); font-weight:700;" id="gameRestartBtn">ПОВТОРИТЬ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* Navigation */
     const screens = document.querySelectorAll('.screen');
     const drawer = document.getElementById('drawer');
     const overlay = document.getElementById('overlay');
@@ -1617,69 +739,284 @@
         drawerNavLinks.forEach(l => l.classList.toggle('active', l.dataset.screen === id));
         closeDrawer();
     }
+    function openDrawer() { drawer.classList.add('open'); overlay.classList.add('show'); menuBtn.classList.add('active'); }
+    function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('show'); menuBtn.classList.remove('active'); }
 
-    function openDrawer() {
-        drawer.classList.add('open');
-        overlay.classList.add('show');
-        menuBtn.classList.add('active');
-    }
-
-    function closeDrawer() {
-        drawer.classList.remove('open');
-        overlay.classList.remove('show');
-        menuBtn.classList.remove('active');
-    }
-
-    menuBtn.addEventListener('click', () => {
-        drawer.classList.contains('open') ? closeDrawer() : openDrawer();
-    });
+    menuBtn.addEventListener('click', () => { drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
     drawerClose.addEventListener('click', closeDrawer);
     overlay.addEventListener('click', closeDrawer);
-    drawerNavLinks.forEach(l => l.addEventListener('click', () => goTo(l.dataset.screen)));
+    drawerNavLinks.forEach(l => l.addEventListener('click', () => { if(l.dataset.screen) goTo(l.dataset.screen); }));
 
-    /* ===== Модальное окно новостей ===== */
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalBody = document.getElementById('modalBody');
-    const modalClose = document.getElementById('modalClose');
-
+    /* News Modal Data */
+    const NEWS = {
+        'news-1': {
+            date: '12 октября 2026',
+            title: 'Расширение мощностей Climate Park',
+            content: '<p>Завершена модернизация второй очереди испытательных павильонов Aimatov Climate Park.</p>'
+        }
+    };
     function openNews(id) {
         const item = NEWS[id];
-        if (!item) return;
-        modalBody.innerHTML = `
-            <div class="modal-date">${item.date}</div>
-            <h2>${item.title}</h2>
-            ${item.content}
-        `;
-        modalOverlay.classList.add('show');
-        modalBody.scrollTop = 0;
+        if(!item) return;
+        document.getElementById('modalBody').innerHTML = `<div class="modal-date">${item.date}</div><h2>${item.title}</h2>${item.content}`;
+        document.getElementById('modalOverlay').classList.add('show');
+    }
+    document.getElementById('modalClose').addEventListener('click', () => document.getElementById('modalOverlay').classList.remove('show'));
+
+    /* =========================================================
+       30 SECRET EASTER EGGS / TRIGGER MECHANICS (NO PUBLIC HINTS)
+       ========================================================= */
+
+    // 1. Alien Matrix Sequence
+    let climateStep = 0;
+    const alienSequence = ['tropic', 'desert', 'taiga', 'storm'];
+    function handleClimateClick(mode, btn) {
+        document.querySelectorAll('.climate-sel-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if(mode === alienSequence[climateStep]) {
+            climateStep++;
+            if(climateStep === 4) {
+                document.getElementById('bodyRoot').classList.add('alien-mode');
+                climateStep = 0;
+            }
+        } else { climateStep = (mode === alienSequence[0]) ? 1 : 0; }
     }
 
-    function closeNews() {
-        modalOverlay.classList.remove('show');
+    // 2. Roswell Form Trigger
+    function handleContactSubmit(e) {
+        e.preventDefault();
+        const val = document.getElementById('contactNameInput').value.trim().toUpperCase();
+        if(val === 'ROSWELL' || val === 'UFO') {
+            document.getElementById('ufoModal').classList.add('show');
+        } else {
+            alert('Запрос зарегистрирован в системе.');
+            e.target.reset();
+        }
     }
 
-    modalClose.addEventListener('click', closeNews);
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) closeNews();
-    });
-
-    /* ===== Свайпы для drawer ===== */
-    let sx = 0;
-    document.addEventListener('touchstart', e => { sx = e.changedTouches[0].screenX; }, { passive: true });
-    document.addEventListener('touchend', e => {
-        const ex = e.changedTouches[0].screenX;
-        if (sx - ex > 80 && sx > window.innerWidth - 50) openDrawer();
-        if (ex - sx > 80 && drawer.classList.contains('open')) closeDrawer();
-    }, { passive: true });
-
-    /* ===== ESC -- закрыть всё ===== */
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            closeDrawer();
-            closeNews();
+    // 3. Illuminati Mode
+    let illCount = 0;
+    document.getElementById('illuminatiTrigger').addEventListener('click', () => {
+        illCount++;
+        if(illCount >= 5) {
+            document.body.style.boxShadow = 'inset 0 0 50px #C5A059';
+            document.getElementById('aboutTitle').textContent = 'Теневое Правительство Корпорации';
+            document.getElementById('corpStrong').textContent = 'Illuminati Aimatov Syndicate';
+            illCount = 0;
         }
     });
-</script>
 
+    // 4 & 9 & 11 & 17 & 20 & 29. Keyboard Word Listeners (Konami, RED, ALIEN, GOV, ZERO)
+    const konamiSeq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
+    let konamiIdx = 0;
+    let keyBuffer = '';
+
+    document.addEventListener('keydown', (e) => {
+        if(e.code === konamiSeq[konamiIdx]) {
+            konamiIdx++;
+            if(konamiIdx === konamiSeq.length) {
+                document.getElementById('bodyRoot').classList.add('red-alert-mode');
+                konamiIdx = 0;
+            }
+        } else { konamiIdx = 0; }
+
+        keyBuffer += e.key.toUpperCase();
+        if(keyBuffer.length > 10) keyBuffer = keyBuffer.slice(-10);
+
+        if(keyBuffer.endsWith('RED')) triggerSelfDestruct();
+        if(keyBuffer.endsWith('ALIEN')) document.getElementById('bodyRoot').classList.add('alien-mode');
+        if(keyBuffer.endsWith('GOV')) document.getElementById('govConsole').classList.add('active');
+        if(keyBuffer.endsWith('ZERO')) document.body.style.transform = 'rotate(180deg)';
+    });
+
+    // 5. Wow Signal Phone (5 sec long press)
+    let phoneTimer = null;
+    const phoneEl = document.getElementById('phoneWow');
+    phoneEl.addEventListener('mousedown', () => { phoneTimer = setTimeout(playWowSignal, 5000); });
+    phoneEl.addEventListener('mouseup', () => clearTimeout(phoneTimer));
+
+    function playWowSignal() {
+        try {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator(); osc.type = 'sine';
+            osc.frequency.setValueAtTime(1420.405, ctx.currentTime);
+            osc.connect(ctx.destination); osc.start(); osc.stop(ctx.currentTime + 2);
+        } catch(e) {}
+    }
+
+    // 6. Chopper Night Vision (3 sec press on projects stat)
+    let statTimer = null;
+    document.getElementById('statProjectsTrigger').addEventListener('mousedown', () => {
+        statTimer = setTimeout(() => { document.getElementById('bodyRoot').classList.toggle('chopper-mode'); }, 3000);
+    });
+    document.getElementById('statProjectsTrigger').addEventListener('mouseup', () => clearTimeout(statTimer));
+
+    // 7. Area 51 Coord (7 Clicks)
+    let coordClicks = 0;
+    document.getElementById('addressCoord').addEventListener('click', () => {
+        coordClicks++;
+        if(coordClicks >= 7) { document.getElementById('addressCoord').textContent = "37°14'06.0\"N 115°48'40.0\"W (ZONE 51)"; coordClicks = 0; }
+    });
+
+    // 8. Alien Biomass (4 Clicks on Bio tag)
+    let bioClicks = 0;
+    document.getElementById('bioTag').addEventListener('click', () => {
+        bioClicks++;
+        if(bioClicks >= 4) { document.getElementById('bioDesc').textContent = "Препарирование биологических образцов неизвестного происхождения (Класс-4)."; bioClicks = 0; }
+    });
+
+    // 13 & 25. Brand Shield Seal (5 clicks for Eye of Providence, 3s hold for Drone)
+    let shieldClicks = 0;
+    let pressTimer = null;
+    const brandShield = document.getElementById('brandShield');
+    brandShield.addEventListener('click', () => {
+        shieldClicks++;
+        if(shieldClicks >= 5) { alert('👁️ NOVUS ORDO SECLORUM'); shieldClicks = 0; }
+    });
+    brandShield.addEventListener('mousedown', () => { pressTimer = setTimeout(openGame, 3000); });
+    brandShield.addEventListener('mouseup', () => clearTimeout(pressTimer));
+
+    // 14. Masonic Share (4 clicks on 35%)
+    let shareClicks = 0;
+    document.getElementById('shareSoftware').addEventListener('click', () => {
+        shareClicks++;
+        if(shareClicks >= 4) { document.getElementById('shareSoftware').textContent = '33°'; shareClicks = 0; }
+    });
+
+    // 15. Deep State Log (7 Clicks on Career sub)
+    let careerClicks = 0;
+    document.getElementById('careerSub').addEventListener('click', () => {
+        careerClicks++;
+        if(careerClicks >= 7) { alert('[DEEP STATE DIRECTIVE 404: LEVEL 9 ACCESS ONLY]'); careerClicks = 0; }
+    });
+
+    // 16. Sokolova Secret Clearance (4s hold)
+    let sokolovaTimer = null;
+    document.getElementById('avatarSokolova').addEventListener('mousedown', () => {
+        sokolovaTimer = setTimeout(() => { alert('Соколова Е.С.: Руководитель криптографического узла «Омега»'); }, 4000);
+    });
+    document.getElementById('avatarSokolova').addEventListener('mouseup', () => clearTimeout(sokolovaTimer));
+
+    // 19 & 27. Satellite Radar & Secure Enclave (4 Clicks)
+    let copyClicks = 0;
+    document.getElementById('copyrightFoot').addEventListener('click', () => {
+        copyClicks++;
+        if(copyClicks >= 4) { document.getElementById('menuSatItem').style.display = 'block'; copyClicks = 0; }
+    });
+    function openSatModal() { document.getElementById('satModal').classList.add('active'); closeDrawer(); }
+
+    // 21. Intercept Audio (4s Hold on Enterprise OS)
+    let entTimer = null;
+    document.getElementById('prodEnterprise').addEventListener('mousedown', () => {
+        entTimer = setTimeout(() => { alert('[SECURE AUDIO INTERCEPT ACTIVATED]'); }, 4000);
+    });
+    document.getElementById('prodEnterprise').addEventListener('mouseup', () => clearTimeout(entTimer));
+
+    // 22. Swipe Up (3 fingers -> Stealth mode)
+    let touchStartY = 0;
+    document.addEventListener('touchstart', (e) => { if(e.touches.length === 3) touchStartY = e.touches[0].clientY; }, {passive:true});
+    document.addEventListener('touchend', (e) => {
+        if(e.changedTouches.length === 3) {
+            let diff = e.changedTouches[0].clientY - touchStartY;
+            if(diff < -70) document.getElementById('bodyRoot').classList.toggle('chopper-mode');
+            else if(diff > 70) openGame();
+        }
+    }, {passive:true});
+
+    // 23. Nuclear Winter (-30C 6 clicks)
+    let tempClicks = 0;
+    document.getElementById('chipZeroTemp').addEventListener('click', () => {
+        tempClicks++;
+        if(tempClicks >= 6) { alert('[PROTOCOL NUCLEAR WINTER: ENGAGED]'); tempClicks = 0; }
+    });
+
+    // 24. Budget Summary (5 Clicks on Hours label)
+    let hoursClicks = 0;
+    document.getElementById('contactHoursLabel').addEventListener('click', () => {
+        hoursClicks++;
+        if(hoursClicks >= 5) { alert('CLASSIFIED BUDGET: $4.2B ALLOCATED TO BLACK PROJECTS'); hoursClicks = 0; }
+    });
+
+    // 28. Cryo Failure (5 Clicks on Extreme Meta)
+    let metaClicks = 0;
+    document.getElementById('metaExtreme').addEventListener('click', () => {
+        metaClicks++;
+        if(metaClicks >= 5) { alert('[CRITICAL: CRYO-CONTAINMENT FAILURE IN SECTOR B]'); metaClicks = 0; }
+    });
+
+    // 30. Database Glitch (5s Hold on News Title)
+    let newsTimer = null;
+    document.getElementById('newsPressTitle').addEventListener('mousedown', () => {
+        newsTimer = setTimeout(() => { document.getElementById('bodyRoot').classList.toggle('glitch-mode'); }, 5000);
+    });
+    document.getElementById('newsPressTitle').addEventListener('mouseup', () => clearTimeout(newsTimer));
+
+    // 10. Self Destruct sequence
+    function triggerSelfDestruct() {
+        const overlay = document.getElementById('destructOverlay');
+        const timerEl = document.getElementById('destructTimer');
+        overlay.classList.add('active');
+        let count = 5;
+        let iv = setInterval(() => {
+            count--; timerEl.textContent = count;
+            if(count <= 0) { clearInterval(iv); overlay.classList.remove('active'); window.location.reload(); }
+        }, 1000);
+    }
+
+    // 12. Director Console
+    let tapCount = 0;
+    document.getElementById('directorAvatar').addEventListener('click', () => {
+        tapCount++;
+        if(tapCount === 3) { document.getElementById('govConsole').classList.add('active'); tapCount = 0; }
+    });
+    document.getElementById('govCloseBtn').addEventListener('click', () => document.getElementById('govConsole').classList.remove('active'));
+
+    function openGame() { document.getElementById('gameOverlay').classList.add('active'); initGame(); }
+
+    // Flappy Drone Game Logic
+    const gameCanvas = document.getElementById('gameCanvas');
+    const droneEl = document.getElementById('drone');
+    const pipeTop = document.getElementById('pipeTop');
+    const pipeBottom = document.getElementById('pipeBottom');
+    const gameScoreEl = document.getElementById('gameScore');
+    let gameInterval = null, droneY = 200, droneVelocity = 0, gravity = 0.35, lift = -6.5, pipeX = 380, pipeGap = 190, pipeTopHeight = 130, score = 0, isPlaying = false;
+
+    function initGame() {
+        droneY = 200; droneVelocity = 0; pipeX = 380; score = 0;
+        gameScoreEl.textContent = score;
+        document.getElementById('gameStartMsg').style.display = 'flex';
+        document.getElementById('gameOvrMsg').style.display = 'none';
+        isPlaying = false; updateGameEl();
+    }
+    function startGamePlay() {
+        document.getElementById('gameStartMsg').style.display = 'none';
+        isPlaying = true;
+        if(gameInterval) clearInterval(gameInterval);
+        gameInterval = setInterval(gameLoop, 20);
+    }
+    function jumpDrone() { if(isPlaying) droneVelocity = lift; }
+    gameCanvas.addEventListener('click', jumpDrone);
+    document.getElementById('gameStartBtn').addEventListener('click', (e) => { e.stopPropagation(); startGamePlay(); });
+    document.getElementById('gameRestartBtn').addEventListener('click', (e) => { e.stopPropagation(); initGame(); startGamePlay(); });
+
+    function updateGameEl() {
+        droneEl.style.top = droneY + 'px';
+        pipeTop.style.left = pipeX + 'px';
+        pipeTop.style.height = pipeTopHeight + 'px';
+        pipeBottom.style.left = pipeX + 'px';
+        pipeBottom.style.top = (pipeTopHeight + pipeGap) + 'px';
+    }
+    function gameLoop() {
+        droneVelocity += gravity; droneY += droneVelocity; pipeX -= 2.2;
+        if(pipeX < -60) { pipeX = 380; pipeTopHeight = Math.floor(Math.random() * 160) + 60; score++; gameScoreEl.textContent = score; }
+        if(droneY < 0 || droneY > 450 || (pipeX < 94 && pipeX > 20 && (droneY < pipeTopHeight || droneY > (pipeTopHeight + pipeGap - 25)))) {
+            isPlaying = false; clearInterval(gameInterval);
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('gameOvrMsg').style.display = 'flex';
+        }
+        updateGameEl();
+    }
+</script>
 </body>
 </html>
+
